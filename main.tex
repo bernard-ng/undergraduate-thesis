@@ -1,0 +1,112 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+		%headinclude=true,
+		%twoside,
+		openright,
+		titlepage,
+		numbers=noenddot,
+		headinclude,
+		%1headlines, 
+	 	%footinclude=true,
+	 	cleardoublepage=empty,
+		dottedtoc, % Make page numbers in the table of contents flushed right with dots leading to them
+		%BCOR=5mm,
+		paper=a4,
+		fontsize=11pt, % Binding correction, paper type and font size
+		french,
+		american, % Languages, change this to your language(s)
+		]{scrreprt} 
+                
+% Includes the file which contains all the document configurations and packages - make sure to edit this file
+\input{classicthesis-config}
+
+\addbibresource{Bibliography.bib} % The file housing your bibliography
+%\addbibresource[label=ownpubs]{Self_Publications.bib} % Uncomment for optional self-publications
+
+%\hyphenation{Put special hyphenation here}
+\numberwithin{figure}{chapter}
+\newtheorem{definition}{Définition}[section]
+\newcommand{\italic}[1]{\textit{#1}}
+\newcommand{\n}{\\}
+\renewcommand\thesubsubsection{\alph{subsubsection}.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frenchspacing % Reduces space after periods to make text more compact
+
+\raggedbottom % Makes all pages the height of the text on that page
+
+\selectlanguage{french} % Select your default language - e.g. american or ngerman
+
+%\renewcommand*{\bibname}{new name} % Uncomment to change the name of the bibliography
+%\setbibpreamble{} % Uncomment to include a preamble to the bibliography - some text before the reference list starts
+
+
+\pagenumbering{roman} % Roman page numbering prior to the start of the thesis content (i, ii, iii, etc)
+
+\areaset{15cm}{25.8cm}
+\parindent 0pt
+\parskip 12pt
+\pagestyle{plain} % Suppress headers for the pre-content pages
+
+%----------------------------------------------------------------------------------------
+%	PRE-CONTENT THESIS PAGES
+%----------------------------------------------------------------------------------------
+
+\include{FrontBackMatter/Titlepage}
+\include{FrontBackMatter/TitlepageBis}
+\cleardoublepage\include{FrontBackMatter/Dedication}
+\cleardoublepage\include{FrontBackMatter/Abstract}
+\cleardoublepage\include{FrontBackMatter/Acknowledgments}
+
+\pagestyle{scrheadings} % Show chapter titles as headings
+
+\cleardoublepage\include{FrontBackMatter/Contents} % Contents, list of figures/tables/listings and acronyms
+
+\cleardoublepage
+
+\pagenumbering{arabic} % Arabic page numbering for thesis content (1, 2, 3, etc)
+\setcounter{chapter}{-1}
+
+\cleardoublepage % Avoids problems with pdfbookmark
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\include{Chapters/Chapter00}
+
+\cleardoublepage % Empty page before the start of the next part
+
+%------------------------------------------------
+
+\include{Chapters/Chapter01}
+\include{Chapters/Chapter02}
+\include{Chapters/Chapter03}
+\include{Chapters/Chapter04}
+
+\cleardoublepage % Empty page before the start of the next part
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\appendix
+\include{FrontBackMatter/Appendix}
+
+%----------------------------------------------------------------------------------------
+%	POST-CONTENT THESIS PAGES
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\include{FrontBackMatter/Bibliography} % Bibliography
+\include{FrontBackMatter/Titleback} % Back of the title page
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

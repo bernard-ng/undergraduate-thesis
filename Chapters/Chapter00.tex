@@ -1,0 +1,70 @@
+% Chapter 0
+
+\chapter{Introduction générale} % Chapter title
+
+\label{ch:0} % For referencing the chapter elsewhere, use \autoref{ch:0} 
+
+%---------------------------------------------------------------------------------------%
+\section{Aperçu général et problématique}
+
+Le Droit imprègne l'existence humaine, se manifestant comme une toile tissée à travers le spectre entier des interactions sociales. Il transcende les simples cadres institutionnels pour s'insérer dans les fibres mêmes de la vie quotidienne, régulant non seulement les transactions économiques et les relations étatiques, mais s'étendant également aux sphères les plus intimes des rapports humains. Des liens conjugaux, où il encadre des aspects aussi personnels que la fidélité ou le soutien dans la maladie, aux liens parentaux, où il définit la filiation, l'autorité parentale et les obligations mutuelles, le Droit se révèle omniprésent. Cette ubiquité du Droit souligne son caractère fondamental au sein de toute société organisée, où il émerge naturellement pour ordonner les comportements dès que des individus cohabitent. Le Droit, en tant que phénomène dynamique, reflète et s'adapte à l'évolution constante des normes sociales et des interactions humaines, rendant sa nature intrinsèquement complexe. \cite{Aubert_Savaux_2010}
+
+Dans le contexte de la \ac{rdc}, le Droit s'articule autour d'un cadre juridique qui, tout en partageant des similitudes avec d'autres systèmes juridiques notamment le système juridique Français et Belge, se distingue par ses particularités inhérentes aux réalités historiques, culturelles et sociales du pays \cite{Mwadiavita_2023}. La \ac{rdc}, héritière d'un système juridique mixte influencé par la tradition du droit civil, s'efforce de réconcilier les normes légales formelles avec les coutumes locales et les réalités socio-politiques propres à une société diverse et en mutation \cite{Bulambo_2012}.  La structuration du Droit Congolais reflète ainsi un équilibre délicat entre les principes universels de justice et les spécificités locales, nécessitant une approche nuancée pour sa compréhension et son application (voir Section~\ref{ch:1:section:introduction-law}).
+
+Seulement, l'accès à l'information juridique en \ac{rdc} est exacerbé non seulement par la rareté des ressources numériques, mais également par la complexité intrinsèque du Droit qui rend sa compréhension ardue pour les non-initiés. Cette situation est d'autant plus critique que l'information juridique, essentielle à l'exercice des droits et à la participation citoyenne, demeure souvent confinée dans des textes légaux d'accès et de lecture complexes. La compréhension du Droit, avec ses termes techniques et ses concepts abstraits, requiert une médiation pédagogique pour être rendue accessible au grand public. Bien que des sites internet dédiés au Droit existent déjà et que des avocats soient disponibles pour fournir des conseils, ces ressources présentent certaines limites. Les sites internet, sans une compréhension approfondie des textes juridiques, ne parviennent pas toujours à résoudre efficacement les problématiques des utilisateurs. D'autre part, l'assistance d'un avocat, bien qu'utile, peut s'avérer coûteuse et donc inaccessible pour une grande partie de la population.
+
+Conscients de ces limitations, nous nous tournons vers les nouvelles technologies, et plus spécifiquement vers l'\ac{ia} et les \acfp{llm} tels que GPT4 \cite{openai2023gpt4}, Gemini \cite{geminiteam2023gemini}, (voir Table~\ref{table:llm-models}), etc... pour apporter une solution novatrice; Ces modèles ont révolutionné la manière dont l'information est recherchée et assimilée.
+
+Un \ac{llm} (voir Section~\ref{ch:1:section:llm}) est une forme avancée d'intelligence artificielle spécialisée dans la compréhension et la génération de langage naturel, entraînée sur de vastes ensembles de données textuelles. Ces modèles utilisent des architectures complexes pour déchiffrer, interpréter et produire du texte de manière cohérente et contextuellement pertinente. Parmi ces architectures, celle du «transformer» \cite{Rothman2022Transformers} (voir Section~\ref{ch:1:section:transformer}), elle repose sur des mécanismes d'attention qui permettent au modèle de pondérer l'importance de différentes parties d'un texte lors de la génération ou de la compréhension de langage, rendant les \ac{llm} particulièrement efficaces pour une variété de tâches linguistiques complexes \cite{vaswani2023attention}.
+
+Toutefois, malgré leur puissance et leur polyvalence, ces modèles ont des limites, notamment en termes de contextualisation. Les \ac{llm} sont souvent entraînés sur des données majoritairement issues de sources globales, principalement en anglais \cite{zhu2024large}, ce qui entraîne un manque de représentativité des contextes spécifiques tels que celui de la \ac{rdc}. Cette lacune se manifeste par une compréhension insuffisante des nuances culturelles, légales et linguistiques propres au contexte Congolais, limitant ainsi leur efficacité à servir de médiateurs fiables pour la vulgarisation du Droit Congolais auprès du grand public.
+
+Devant l'impératif de lever les barrières qui limitent l'accès et la compréhension de l'information juridique en \ac{rdc}, notre mémoire vise à mettre au point un chatbot innovant. Ce chatbot, s'appuyant sur les technologies avancées des \ac{llm}, est conçu pour assimiler et refléter les nuances linguistiques et culturelles spécifiques au contexte juridique Congolais. 
+
+Un chatbot est un agent logiciel capable de simuler une conversation avec les utilisateurs en langage naturel à travers des applications de messagerie, des sites web, des applications mobiles ou par téléphone \cite{Pritchett_2019}. Inspiré par les fonctionnalités de ChatGPT, un modèle reconnu pour son interaction fluide et naturelle en langage humain, notre chatbot vise à devenir un outil efficace pour démocratiser l'accès au Droit, facilitant ainsi la compréhension et l'accessibilité de l'information juridique pour tous les Congolais.
+
+Cette démarche soulève plusieurs questions de recherche fondamentales :
+
+\begin{enumerate}
+    \item De quelle manière pouvons-nous ajuster des \ac{llm} de  pour qu'ils épousent fidèlement les nuances linguistiques et les spécificités culturelles du cadre juridique en \ac{rdc}, assurant ainsi une pertinence et une efficacité maximales dans le contexte local ?
+    
+    \item Comment concevoir un chatbot capable de simplifier et de traduire des concepts juridiques complexes de manière précise tout en les rendant accessibles à un public non spécialisé, sans compromettre l'exactitude et la fidélité des informations fournies ?
+
+    \item Quelles méthodologies devrions-nous mettre en place pour évaluer de manière rigoureuse la fiabilité et l'exactitude des données fournies par le chatbot, afin de s'assurer que les utilisateurs reçoivent des explications justes et précises des textes de loi et des procédures juridiques ?
+\end{enumerate}
+
+La réponse à ces interrogations constituera le socle de notre démarche, visant à rendre le Droit plus accessible et à favoriser une meilleure compréhension du système juridique Congolais parmi la population.
+
+%---------------------------------------------------------------------------------------%
+\section{Objectifs}
+Ce mémoire vise à créer un chatbot fondé sur un \ac{llm} pour rendre le système juridique Congolais plus accessible. Notre principal objectif est de simplifier les informations juridiques complexes, permettant ainsi à un public plus large de comprendre les tenants et aboutissants du Droit Congolais. Pour ce faire, nous nous concentrons sur plusieurs axes majeurs.
+
+Tout d'abord, notre objectif est de concevoir une interface utilisateur conviviale pour le chatbot. Une interface intuitive permettra aux utilisateurs d'interagir plus facilement avec le chatbot, simplifiant ainsi la recherche et la compréhension des informations juridiques. Cette convivialité est un pilier essentiel pour rendre les concepts juridiques compréhensibles à un public non-initié.
+
+Ensuite, notre démarche consiste à raffiner un \ac{llm} spécifiquement adapté à cette tâche. Ce processus comprend une personnalisation approfondie du modèle, notamment par le biais du fine-tuning et de l'analyse des similarités sémantiques, pour assurer une transmission précise et fiable des informations juridiques. L'accent est mis sur le développement d'un chatbot qui non seulement répond aux exigences de précision et de fiabilité, mais qui est également sensible aux nuances culturelles congolaises.
+
+Enfin, une composante cruciale de ce mémoire est l'évaluation humaine. Nous prévoyons de mettre en place un système d'évaluation impliquant des utilisateurs réels. Cela nous permettra de vérifier la qualité des informations transmises par le chatbot et de nous assurer que ces informations restent fidèles aux concepts juridiques originaux, tout en étant compréhensibles pour le public ciblé. Cette évaluation continue guidera l'amélioration constante du chatbot pour garantir son efficacité et sa pertinence dans la vulgarisation du système juridique Congolais.
+
+
+%---------------------------------------------------------------------------------------%
+\section{Limitations}
+\label{ch:0:section:limitaions}
+
+Ce mémoire reconnaît plusieurs contraintes inhérentes à la conception d'un chatbot destiné à la vulgarisation du Droit Congolais. Premièrement, la richesse et la complexité du système juridique Congolais constituent un obstacle significatif. La législation et les procédures sont non seulement vastes mais aussi sujettes à des modifications fréquentes, ce qui complique l'intégration exhaustive de toutes les informations pertinentes dans le chatbot. De plus, l'obligation de mettre régulièrement à jour le système pour refléter l'évolution du Droit exige une vigilance et des ressources constantes.
+
+Par ailleurs, la mise en place d'une base de données exhaustive est limitée par la disponibilité restreinte des ressources numériques. L'accès à des informations juridiques complètes, actuelles et fiables est freiné par la numérisation insuffisante des textes de loi, des décisions de justice, des traités internationaux, ainsi que des analyses doctrinales. De plus, les restrictions d'accès à des bases de données juridiques spécialisées, aux archives des avis d'experts et aux résumés de jurisprudence constituent un obstacle majeur. Ces données essentielles sont cruciales pour assurer l'efficacité et la fiabilité du chatbot dans le domaine juridique.
+
+Malgré l'étendue des capacités des \acfp{llm}, notre projet se concentrera principalement sur trois fonctionnalités clés adaptées aux besoins spécifiques de notre public cible : la réponse aux questions (Question Answering), la synthèse d'informations (Summarisation) et la classification des textes. Cette focalisation permettra de maximiser l'efficacité du chatbot dans le contexte juridique Congolais, tout en tenant compte des limitations précitées.
+
+%---------------------------------------------------------------------------------------%
+\section{Division du travail}
+		
+\begin{list}{}{En dehors de l'introduction, la partie conclusive et l'annexe, ce travail est organisé en trois chapitres comme suit:}
+    \item \textbf{\textsl{\texttt{Chapitre 1}}} Ce chapitre offrira une vue d'ensemble approfondie des \ac{llm}, en explorant les avancées récentes, les applications marquantes et les défis associés, particulièrement en lien avec les applications juridiques et les chatbots. Cette section établira un cadre théorique et contextuel essentiel pour appréhender l'innovation et la pertinence du mémoire.
+    
+    % \item \textbf{\textsl{\texttt{Chapitre 2}}}  Ce chapitre présentera une analyse du système juridique en République Démocratique du Congo, en abordant les lois, les principes fondamentaux, les procédures et les défis spécifiques à la numérisation et à l'accès aux informations juridiques. Cette base permettra de souligner l'importance et la nécessité de développer des outils technologiques adaptés pour rendre le Droit plus accessible.
+    
+    \item \textbf{\textsl{\texttt{Chapitre 2}}} Ici, la discussion portera sur la conception technique et le développement du chatbot. Les choix technologiques, les architectures logicielles, ainsi que les stratégies d'ajustement fin et d'adaptation du \ac{llm} au contexte juridique Congolais seront décrits. Cette partie mettra en avant les aspects pratiques et techniques du mémoire, illustrant comment le chatbot a été concrètement mis en œuvre.
+
+    \item \textbf{\textsl{\texttt{Chapitre 3}}} Le dernier chapitre se concentrera sur l'évaluation des performances du chatbot, en présentant les méthodologies d'évaluation, l'analyse des données recueillies et les retours des utilisateurs. L'objectif sera de mesurer l'efficacité du chatbot dans la simplification des informations juridiques et d'identifier des pistes d'amélioration pour en augmenter la pertinence et l'utilité.
+\end{list}

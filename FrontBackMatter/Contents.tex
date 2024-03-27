@@ -1,0 +1,89 @@
+% Table of Contents - List of Tables/Figures/Listings and Acronyms
+
+\refstepcounter{dummy}
+
+\pdfbookmark[1]{\contentsname}{tableofcontents} % Bookmark name visible in a PDF viewer
+
+\setcounter{tocdepth}{2} % Depth of sections to include in the table of contents - currently up to subsections
+
+\setcounter{secnumdepth}{3} % Depth of sections to number in the text itself - currently up to subsubsections
+
+\manualmark
+\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+\addcontentsline{toc}{chapter}{Table des matières}
+\tableofcontents 
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+
+\clearpage
+
+\begingroup 
+\let\clearpage\relax
+\let\cleardoublepage\relax
+\let\cleardoublepage\relax
+
+%----------------------------------------------------------------------------------------
+%	List of Figures
+%----------------------------------------------------------------------------------------
+
+\refstepcounter{dummy}
+\addcontentsline{toc}{chapter}{Table des figures}
+\pdfbookmark[1]{\listfigurename}{lof} % Bookmark name visible in a PDF viewer
+
+\listoffigures
+
+\vspace{8ex}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	List of Tables
+%----------------------------------------------------------------------------------------
+
+\refstepcounter{dummy}
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\pdfbookmark[1]{\listtablename}{lot} % Bookmark name visible in a PDF viewer
+
+\listoftables
+        
+\vspace{8ex}
+\newpage
+
+       
+%----------------------------------------------------------------------------------------
+%	Acronyms
+%----------------------------------------------------------------------------------------
+
+\refstepcounter{dummy}
+
+\pdfbookmark[1]{Acronymes}{acronymes} % Bookmark name visible in a PDF viewer
+
+\markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+\addcontentsline{toc}{chapter}{Liste des abréviations, sigle et acronymes}
+\chapter*{Liste des abréviations, sigle et acronymes}
+
+\begin{acronym}[LLM]
+\acro{ml}[ML]{Apprentissage Automatique}
+\acro{dl}[DL]{Apprentissage Profond}
+\acro{nlp}[NLP]{Natural language processing}
+\acro{ia}[IA]{Intelligence Artificielle}
+\acro{llm}[LLM]{Modèle de Langage à Grande Échelle}
+\acrodefplural{llm}[LLMs]{Modèles de Langage à Grande Échelle}
+\acro{svm}[SVM]{Support Vector Machine}
+\acro{knn}[k-NN]{K-Nearest Neighbour}
+\acro{pca}[PCA]{Principal Component Analysis}
+\acro{tsne}[t-SNE]{t-Distributed Stochastic Neighbor Embedding}
+\acro{dqn}[DQN]{Deep Q Network}
+\acro{dbscan}[DBSCAN]{Density-based Spatial Clustering of Applications with Noise}
+\acro{gd}[GD]{Descente de Gradient}
+\acro{sgd}[SGD]{Descente de Gradient Stochastique}
+\acro{adam}[Adam]{Adaptive Moment Estimation}
+\acro{rmsprop}[RMSprop]{Root Mean Squared Propagation}
+\acro{adagrad}[Adagrad]{Adaptive Gradient Algorithm}
+\acro{rag}[RAG]{Retrieval-Augmented Generation}
+\acro{ft}[FT]{Fine-tuning}
+
+\acro{rdc}[RDC]{République Démocratique du Congo}
+\end{acronym}  
+                   
+\endgroup

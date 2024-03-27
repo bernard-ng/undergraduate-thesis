@@ -1,0 +1,68 @@
+% Chapter 2
+
+\chapter{Conception et Développement} % Chapter title
+
+\label{ch:2} % For referencing the chapter elsewhere, use \autoref{ch:3} 
+
+De prime abord, il est important de souligner que la création d'un \ac{llm} est un processus coûteux et exigeant en termes de données. Les modèles de langage existants, tels que GPT-4 \cite{openai2023gpt4}, ont été développés avec une quantité massive de données et une puissance de calcul considérable. Cependant, pour adapter ces modèles au contexte juridique congolais, il serait peu pratique, voire impossible, de construire un \ac{llm} à partir de zéro en raison de contraintes de ressources.
+
+Inspiré de \cite{soudani2024fine}, notre approche consiste à utiliser un modèle de langage existant comme point de départ (voir Table~\ref{table:llm-models}). En prenant un modèle pré-entraîné, nous pouvons bénéficier des connaissances et des capacités linguistiques déjà intégrées dans le modèle. Nous chercherons ensuite à affiner ce modèle pré-entraîné pour le rendre spécifique au système juridique congolais. Pour ce faire, nous utiliserons deux méthodes principales : le \ac{ft} et le \ac{rag}.
+
+Le \ac{ft} implique de prendre un modèle de langage pré-entraîné, tel que GPT-4, et de le spécialiser pour le domaine spécifique du système juridique Congolais. Cette méthode consiste à ajuster les poids du modèle en le nourrissant avec des données spécifiques au contexte juridique Congolais. En utilisant des corpus de textes juridiques, des décisions de justice et d'autres ressources pertinentes, nous entraînerons le modèle à comprendre et à générer des réponses cohérentes et précises aux questions juridiques \cite{yue2023disclawllm}.
+
+En parallèle, nous utiliserons également l'approche du \ac{rag}, qui combine la génération de texte avec des techniques de recherche d'informations. Le \ac{rag} permet au chatbot d'accéder à une base de connaissances juridiques étendue et de récupérer des informations pertinentes en réponse aux requêtes des utilisateurs. En utilisant des index de recherche efficaces et des algorithmes de récupération d'informations, le chatbot peut fournir des réponses bien informées en s'appuyant sur une grande variété de sources \cite{lewis2021retrievalaugmented}.
+
+En définitive, La conception et le développement présentés dans ce mémoire s'articulent autour de deux axes principaux. D'une part, nous nous concentrerons sur le modèle \ac{llm}, en suivant toutes les étapes de conception et de développement détaillées dans la section \ref{ch:1:section:ml-process}. Ce processus englobe la collecte initiale des données brutes jusqu'au déploiement final du modèle sélectionné dans un environnement de production. D'autre part, l'attention sera également portée sur le développement du chatbot, qui agit en tant qu'application web. Cette interface utilisateur servira de pont pour accéder au modèle \ac{llm}, facilitant ainsi l'interaction entre les utilisateurs et le système juridique Congolais à travers le chatbot. 
+
+Ce dernier ne représente pas seulement un outil d'accès, mais aussi une manière intuitive et efficace de mettre en application les capacités du modèle \ac{llm}, permettant aux utilisateurs d'obtenir des réponses et des informations juridiques pertinentes de manière interactive.
+
+\section{Les données}
+
+Compte tenu de nos contraintes et objectifs (voir Section~\ref{ch:0:section:limitaions}), les données n'ont pas besoin d'être structurées selon un format particulier, à condition qu'elles soient disponibles sous forme textuelle. Cette flexibilité permet d'exploiter une large variété de sources d'information juridique sans nécessiter de processus de prétraitement complexe pour adapter les données à un format spécifique.
+
+Notre jeu de données sera principalement constitué de documents juridiques provenant de diverses sources officielles et spécialisées, afin d'englober une vaste étendue de la législation et de la doctrine juridique congolaise.
+
+Il est à noter que, bien que les données ne requièrent pas un format spécifique, leur qualité textuelle est essentielle. Cela implique un travail de vérification pour s'assurer de la fiabilité, de la pertinence et de l'actualité des informations collectées. Ce processus permettra de minimiser les erreurs et les ambiguïtés dans les réponses fournies par le chatbot, assurant ainsi une assistance juridique de qualité aux utilisateurs.
+
+\subsection{Les sources d'informations}
+
+
+
+\begin{itemize}
+    \item Journal Officiel : Publications officielles qui contiennent les nouvelles lois, décrets, et annonces légales, offrant une source à jour des évolutions législatives.
+    
+    \item Lois et Décrets : Textes législatifs et réglementaires qui forment la base du système juridique congolais, essentiels pour comprendre le cadre légal en vigueur.
+    
+    \item Jurisprudences : Décisions de justice issues des tribunaux, fournissant des exemples concrets d'application des lois et des interprétations juridiques.
+    
+    \item Articles d'Actualité Juridique : Articles publiés par des spécialistes et des médias juridiques, offrant des analyses et des commentaires sur les évolutions récentes du droit et les cas d'intérêt.
+    
+    \item Commentaires de Juristes : Contributions d'experts dans le domaine juridique, y compris des analyses détaillées, des critiques, et des interprétations de divers aspects du droit.
+\end{itemize}
+
+La sélection de ces sources vise à fournir à notre modèle une richesse de connaissances et de perspectives sur le droit congolais, permettant ainsi de générer des réponses informées et pertinentes aux questions des utilisateurs. En plus de couvrir la législation et la réglementation actuelle, l'inclusion de jurisprudences et de commentaires d'experts aidera le modèle à saisir les nuances et les complexités du système juridique congolais.
+
+\subsection{Collecte des données}
+\subsection{Création du Dataset}
+\subsection{Pré-traitement et Formalisations des données}
+\subsection{Stockage des données}
+
+\section{Adaption du LLM avec l'approche RAG}
+\subsection{Pré-traitement et Création des Embeddings}
+\subsection{Construction de l'index de recherche}
+\subsection{Fonction de distance vectorielle}
+\subsection{Requêtes sur l'index de recherche}
+\subsection{Déploiement de l'index de recherche}
+
+\section{Adaption du LLM avec l'approche Fine-tuning}
+\subsection{Pré-traitement et Formalisation}
+\subsection{Création du modèle}
+\subsection{Déploiement du modèle}
+
+\section{Conception de l'application Web}
+\subsection{Modélisation de la base de données}
+\subsection{Architecture et choix technologique}
+\subsection{Diagrammes UML}
+\subsection{Développement}
+
+\section{Déploiement et mis en production}
