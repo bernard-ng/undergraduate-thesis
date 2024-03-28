@@ -10,7 +10,7 @@ L'\acf{ia} peut être définie de diverses manières, mais une définition large
 
 Cette capacité à simuler des processus cognitifs humains est rendue possible grâce à une branche spécifique appelée "\acf{ml}". Celle-ci permet aux ordinateurs d'apprendre à partir de données c'est à dire : d'identifier des motifs et de prendre des décisions. 
 
-Le \acs{ml} repose donc sur la conception d'algorithmes \footnote{Un algorithme est une suite finie et non ambiguë d'instructions et d’opérations permettant de résoudre une classe de problèmes.} capables d'accéder à des données et de les utiliser pour se former eux-mêmes à accomplir des tâches spécifiques. Cette conception table sur une solide base mathématique et statistique, qui fournit les outils nécessaires pour modéliser et comprendre les motifs complexes dans les données. Les données traitées sont souvent représentées sous forme de matrices. Par exemple, une image peut être représentée comme une matrice de pixels, où chaque élément de la matrice correspond à la valeur d'un pixel (voir Figure~\ref{fig:mnist-image-matrix}). 
+Le \acs{ml} repose donc sur la conception d'algorithmes \footnote{"Un algorithme est une suite finie et non ambiguë d'instructions et d’opérations permettant de résoudre une classe de problèmes." \cite{frwiki:213207404}} capables d'accéder à des données et de les utiliser pour se former eux-mêmes à accomplir des tâches spécifiques. Cette conception table sur une solide base mathématique et statistique, qui fournit les outils nécessaires pour modéliser et comprendre les motifs complexes dans les données. Les données traitées sont souvent représentées sous forme de matrices. Par exemple, une image peut être représentée comme une matrice de pixels, où chaque élément de la matrice correspond à la valeur d'un pixel (voir Figure~\ref{fig:mnist-image-matrix}). 
 
 \begin{figure}[H]
     \centering
@@ -236,7 +236,7 @@ Cela a conduit à l'émergence de l'\acf{dl}, un sous-ensemble de l'apprentissag
 \begin{figure}[H]
     \centering
     \includegraphics[width=12cm]{gfx/fig-dl-ml-ai.png}
-    \caption{Un diagramme de Venn montrant comment l'apprentissage profond est lié à l'apprentissage par représentation, qui est à son tour lié à l'apprentissage automatique, qui est utilisé dans plusieurs approches de l'IA, mais pas toutes \cite{Goodfellow-et-al-2016}}.
+    \caption{Un diagramme de Venn montrant comment l'apprentissage profond est lié à l'apprentissage par représentation, qui est à son tour lié à l'apprentissage automatique, qui est utilisé dans plusieurs approches de L'\ac{ia}, mais pas toutes \cite{Goodfellow-et-al-2016}}.
     \label{fig:dl-ml-ai}
 \end{figure}
 
@@ -251,7 +251,7 @@ L'apprentissage profond s'appuie sur une représentation mathématique spécifiq
     \label{fig:perceptron}
 \end{figure}
 
-Le perceptron peut être considéré comme la brique élémentaire des réseaux de neurones. Développé dans les années 1950 par Frank Rosenblatt \footnote{"Frank Rosenblatt (né à New Rochelle le 11 juillet 1928 - mort le 11 juillet 1971) est un psychologue américain qui travaille sur l'intelligence artificielle. Principal représentant du « courant neuronal », qui voulait construire celle-ci à partir de la conception du réseau neuronal humain, il développe sur ce modèle le perceptron en 1957 à l'Université Cornell." - Wikipedia}, il représente un modèle simplifié d'un neurone biologique. Un perceptron reçoit plusieurs entrées, chacune d'elles étant pondérée par un poids spécifique. Ces entrées pondérées sont ensuite sommées, et si la somme dépasse un certain seuil, le perceptron émet un signal de sortie. Cette sortie est déterminée par une fonction d'activation, qui, dans le cas du perceptron initial, est typiquement une fonction d'étape. Le perceptron ajuste ses poids à travers un processus d'apprentissage basé sur les erreurs commises, raffinant ainsi sa capacité à classer correctement les entrées \cite{wang2017origin}.
+Le perceptron peut être considéré comme la brique élémentaire des réseaux de neurones. Développé dans les années 1950 par Frank Rosenblatt \footnote{"Frank Rosenblatt (né à New Rochelle le 11 juillet 1928 - mort le 11 juillet 1971) est un psychologue américain qui travaille sur l'intelligence artificielle. Principal représentant du « courant neuronal », qui voulait construire celle-ci à partir de la conception du réseau neuronal humain, il développe sur ce modèle le perceptron en 1957 à l'Université Cornell." \cite{frwiki:213039317}}, il représente un modèle simplifié d'un neurone biologique. Un perceptron reçoit plusieurs entrées, chacune d'elles étant pondérée par un poids spécifique. Ces entrées pondérées sont ensuite sommées, et si la somme dépasse un certain seuil, le perceptron émet un signal de sortie. Cette sortie est déterminée par une fonction d'activation, qui, dans le cas du perceptron initial, est typiquement une fonction d'étape. Le perceptron ajuste ses poids à travers un processus d'apprentissage basé sur les erreurs commises, raffinant ainsi sa capacité à classer correctement les entrées \cite{wang2017origin}.
 
 Bien que le perceptron ait marqué un tournant dans le développement des algorithmes d'apprentissage automatique, il présente des limitations, notamment son incapacité à traiter des problèmes non linéairement séparables, comme l'opérateur logique XOR (voir Figure~\ref{fig:perceptron-xor}). Cette limitation a conduit à l'exploration de structures plus complexes, ouvrant la voie aux réseaux de neurones  \cite{Min69}.
 
@@ -377,7 +377,7 @@ Les modèles de langage sont entraînés à comprendre les probabilités d'appar
     \label{fig:n-gram}
 \end{figure}
 
-Prenons l'exemple d'un modèle trigramme (un cas spécifique où $n = 3$) pour illustrer comment cela fonctionne, Considérons la phrase "Le chat mange". Si nous voulons prédire le mot suivant après "chat mange", un modèle tri-gramme regardera les occurrences de "chat mange" dans le corpus\footnote{Un corpus est un ensemble de documents, artistiques ou non, regroupés dans une optique précise. On peut utiliser des corpus dans plusieurs domaines : études littéraires, linguistiques, scientifiques, philosophie, etc.} d'entraînement et calculera la probabilité du mot suivant chaque occurrence.
+Prenons l'exemple d'un modèle trigramme (un cas spécifique où $n = 3$) pour illustrer comment cela fonctionne, Considérons la phrase "Le chat mange". Si nous voulons prédire le mot suivant après "chat mange", un modèle tri-gramme regardera les occurrences de "chat mange" dans le corpus\footnote{"Un corpus est un ensemble de documents, artistiques ou non, regroupés dans une optique précise. On peut utiliser des corpus dans plusieurs domaines : études littéraires, linguistiques, scientifiques, philosophie, etc." \cite{frwiki:205358830}} d'entraînement et calculera la probabilité du mot suivant chaque occurrence.
 
 La probabilité d'un mot \(w_n\) sachant les deux mots précédents \(w_{n-2}\) et \(w_{n-1}\) dans un modèle trigramme est donnée par : 
 
@@ -413,7 +413,7 @@ gemma & Gemma est une famille de modèles ouverts légers et de pointe construit
 llama2  & Llama 2 est une collection de modèles linguistiques de base allant des paramètres 7B à 70B \cite{touvron2023llama}. \\ \hline
 mistral & Le modèle 7B publié par Mistral AI, mis à jour à la version 0.2 \cite{jiang2023mistral}. \\ \hline
 Vicuna & Modèle de chat à usage général basé sur Llama et Llama 2 avec des contextes de 2K à 16K \cite{vicuna2023}. \\ \hline
-Starling & formé par apprentissage par renforcement à partir du retour d'information de l'IA, qui vise à améliorer l'utilité des chatbots. \cite{starling2023}. \\ \hline
+Starling & formé par apprentissage par renforcement à partir du retour d'information de L'\ac{ia}, qui vise à améliorer l'utilité des chatbots. \cite{starling2023}. \\ \hline
 mixtral & Un modèle de mélange d'experts (MoE) de haute qualité avec des poids ouverts par Mistral AI. \\ \hline
 llava & LLaVA est un nouveau modèle multimodal entraîné de bout en bout qui combine un encodeur de vision et Vicuna \\ \hline
 \end{tabular}
@@ -571,7 +571,7 @@ L'histoire du développement des chatbots et de l'intelligence artificielle (IA)
 
 L'aventure s'accélère en 1950 avec la proposition du test de Turing par Alan Turing \cite{turingTest}, évaluant l'intelligence d'une machine à travers sa capacité à imiter le langage humain, un tournant décisif inspirant des décennies de recherche. L'apparition d'ELIZA \cite{eliza1966} en 1966, conçue par Joseph Weizenbaum, marque la naissance des premiers chatbots, malgré une compréhension et une interaction encore limitées. L'évolution continue avec PARRY en 1972, simulant un patient schizophrène paranoïaque, offrant une nouvelle perspective sur les interactions conversationnelles. Les décennies suivantes voient la création de Racter et Jabberwacky, explorant respectivement la génération aléatoire de texte et l'apprentissage à partir d'interactions en ligne, des pas de géant vers des chatbots plus interactifs et personnalisés \cite{chatbotHistoryChatbots, Weizenbaum1966ELIZAaCP, alamin2024history}. 
 
-Le champ du \ac{ml} a connu une avancée significative au début des années 2000 avec l'introduction de l'apprentissage profond et l'arrivée d'Internet, permettant aux ordinateurs de comprendre et d'interpréter l'information sous diverses formes. Cette période a vu les grandes entreprises technologiques pousser le progrès de l'intelligence artificielle, en utilisant la puissance computationnelle pour relever des défis complexes, avec des projets comme CALO qui pavent la voie à des assistants virtuels sophistiqués tels que Siri \cite{siri}, marquant l'aube d'une nouvelle ère dans l'IA conversationnelle.
+Le champ du \ac{ml} a connu une avancée significative au début des années 2000 avec l'introduction de l'apprentissage profond et l'arrivée d'Internet, permettant aux ordinateurs de comprendre et d'interpréter l'information sous diverses formes. Cette période a vu les grandes entreprises technologiques pousser le progrès de l'intelligence artificielle, en utilisant la puissance computationnelle pour relever des défis complexes, avec des projets comme CALO qui pavent la voie à des assistants virtuels sophistiqués tels que Siri \cite{siri}, marquant l'aube d'une nouvelle ère dans L'\ac{ia} conversationnelle.
 
 L'introduction de \acfp{llm} par OpenAI avec GPT et ses versions successives, ainsi que l'annonce de Google Bard (aujourd'hui Gemini), témoignent d'une évolution rapide vers des chatbots dotés d'une compréhension contextuelle et d'une capacité de raisonnement avancées, reflétant l'incroyable voyage depuis les premières techniques de correspondance de motifs à l'utilisation des architectures neurales Transformer (voir Section~\ref{ch:1:section:transformer}).
 
@@ -629,18 +629,114 @@ Cet ajustement présente le même contenu mais dans un format légèrement diff�
 
 \paragraph{Élaboration d'une Loi} \hspace{0pt}
 
-L'élaboration d'une loi en RDC suit un processus bien défini, impliquant différentes étapes et acteurs du système juridique et politique. Ce processus commence généralement par l'initiative législative, qui peut être prise par les membres du Parlement, le gouvernement, ou par voie de pétition populaire dans certains cas. Une fois proposée, une loi doit passer par diverses étapes de discussion, d'amendement, et d'approbation dans les deux chambres du Parlement congolais.
+L'élaboration d'une loi en RDC suit un processus bien défini, impliquant différentes étapes et acteurs du système juridique et politique. Ce processus commence généralement par l'initiative législative, qui peut être prise par les membres du Parlement, le gouvernement, ou par voie de pétition populaire dans certains cas \footnote{\href{https://www.memoireonline.com/12/12/6552/Problematique-du-droit-de-la-petition-dans-la-constitution-du-18-fevrier-2006-de-la-RDC.html}{Problématique du droit de la pétition dans la constitution du 18 février 2006 de la RDC}}. Une fois proposée, une loi doit passer par diverses étapes de discussion, d'amendement, et d'approbation dans les deux chambres du Parlement congolais.
 
 Après l'approbation par le Parlement, la loi est soumise au Président de la République pour promulgation et publication au Journal Officiel, devenant ainsi exécutoire. Ce processus d'élaboration législative est conçu pour assurer la participation démocratique, le débat ouvert, et la réflexion approfondie sur les propositions législatives avant qu'elles ne deviennent des lois.
 
+\paragraph{La pyramide de Kelsen \cite{Kelsen_Raphael_2024, Kelsen_jurixio_2023}} \hspace{0pt}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{gfx/fig-law-pyramide.png}
+    \includegraphics[width=12cm]{gfx/fig-law-pyramide.png}
     \caption{La pyramide de Kelsen permet de visualiser la hiérarchie des normes. \cite{frwiki:212163472}}
     \label{fig:datagenerated}
 \end{figure}
 
-\subsection{Concepts Clés et Dispositifs Juridiques}
+La pyramide de Kelsen est un concept essentiel pour comprendre la structure et la hiérarchie des normes juridiques dans un système juridique, y compris celui de la République Démocratique du Congo. Développée par le juriste Hans Kelsen \footnote{"Hans Kelsen, né le 11 octobre 1881 à Prague et mort le 19 avril 1973 à Orinda, est un juriste austro-américain, fils d'une famille juive de Bohême et de Galicie. Théoricien du droit, il est l'auteur de la « Théorie pure du droit », œuvre phare de la discipline." \cite{frwiki:213425509}}, cette théorie illustre comment les différentes règles de droit s'ordonnent et se subordonnent les unes aux autres, formant une structure pyramidale.
 
-\section{Quelques cas d'applications des chatbots juridique}
+Au sommet de cette pyramide se trouve la Constitution, qui est la norme suprême d'un pays. Toutes les autres normes juridiques dérivent de la Constitution et doivent lui être conformes. En RDC, comme dans de nombreux autres systèmes juridiques, la Constitution détermine les principes fondamentaux de l'État, les droits et libertés des citoyens, ainsi que l'organisation et le fonctionnement des pouvoirs publics.
 
+Sous la Constitution, on trouve les lois organiques qui ont une valeur supérieure aux lois ordinaires. Les lois organiques précisent l'organisation et le fonctionnement des institutions prévues par la Constitution. Elles sont suivies des lois ordinaires qui régissent les aspects spécifiques de la vie sociale, économique, et juridique.
+
+Les règlements exécutifs, comprenant les décrets et les arrêtés, viennent ensuite. Ces actes sont émis par le pouvoir exécutif pour assurer l'application des lois. Bien qu'inférieurs aux lois, ils jouent un rôle crucial dans la mise en œuvre des politiques publiques et des législations.
+
+Enfin, à la base de la pyramide, se trouvent les normes réglementaires locales et les décisions de jurisprudence. Ces dernières, bien que ne constituant pas une source de droit formelle dans tous les systèmes juridiques, influencent significativement l'application et l'interprétation du droit.
+
+La pyramide de Kelsen met en lumière la notion d'ordre juridique, où chaque norme tire sa validité de la norme immédiatement supérieure, jusqu'à la Constitution qui est la source ultime de toute validité juridique. Ce principe de hiérarchie des normes assure la cohérence et la systématicité du droit, permettant ainsi de prévenir les conflits normatifs et de garantir une certaine prévisibilité et stabilité dans l'ordre juridique.
+
+\newpage
+\section{Intersection entre Intelligence artificielle et Droit}
+
+L'intersection entre l'\acf{ia} et le droit représente un domaine d'étude fascinant et en constante évolution, reflétant l'intégration croissante des technologies avancées dans tous les aspects de la société. Alors que l'\ac{ia} continue de progresser à un rythme exponentiel, son impact sur le domaine juridique devient de plus en plus significatif, soulevant à la fois des opportunités et des défis uniques pour les praticiens, les législateurs et les institutions juridiques.
+
+L'application de l'\ac{ia} dans le droit ouvre la voie à une multitude d'innovations, allant de l'automatisation des tâches documentaires à la prédiction des issues judiciaires, en passant par l'amélioration de l'accès à la justice. Ces technologies promettent d'accroître l'efficacité des processus légaux, de réduire les coûts et d'améliorer la qualité des services juridiques. Par exemple, les chatbots juridiques peuvent fournir des consultations préliminaires, tandis que les systèmes de traitement du langage naturel permettent d'analyser rapidement d'importants volumes de textes juridiques pour extraire des informations pertinentes.
+
+Toutefois, l'adoption de l'\ac{ia} dans le secteur juridique n'est pas sans soulever des questions complexes relatives à l'éthique, à la responsabilité, à la transparence et à la protection des données personnelles. Les systèmes d'\ac{ia}, bien qu'incroyablement puissants, peuvent présenter des biais, des erreurs et des limitations qui, s'ils ne sont pas correctement adressés, pourraient compromettre les droits et libertés fondamentales des individus. En outre, l'émergence de l'\ac{ia} générative et des modèles \ac{llm} pose de nouvelles interrogations sur les droits de propriété intellectuelle, notamment la paternité et la titularité des œuvres créées par ou avec l'aide de l'\ac{ia}.
+
+Face à ces enjeux, le monde juridique est appelé à réfléchir et à adapter ses cadres législatifs pour encadrer l'utilisation de l'\ac{ia}, garantissant ainsi que son déploiement se fasse dans le respect des principes de justice, d'équité et de respect de la vie privée. Cette tâche implique une collaboration étroite entre juristes, technologues, chercheurs et décideurs politiques pour élaborer des normes et des régulations qui équilibrent les avantages de l'\ac{ia} avec la protection des droits fondamentaux.
+
+L'\ac{ia} et du droit a conduit à une variété d'applications tant dans la recherche que dans l'industrie, notamment à travers le développement et le déploiement de services web innovants. Ces applications illustrent comment l'\ac{ia} peut transformer les pratiques juridiques, offrir de nouveaux outils pour l'analyse et la gestion des données légales, et même réinventer l'accès à la justice pour le grand public.
+
+\newpage
+\subsection{Dans la recherche}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|m{0.3\textwidth}|m{0.65\textwidth}|}
+\hline
+\textbf{Article} & \textbf{Résumé} \\
+\hline
+Development of a Legal Document AI-Chatbot & Cet article présente le développement d'un chatbot AI pour la documentation juridique, exploitant le potentiel de L'\ac{ia}, notamment des chatbots, pour simplifier la gestion des documents légaux. Le chatbot fonctionne en traitant les requêtes dans le contexte des documents chargés sur le serveur et en fournissant des réponses pertinentes \cite{devaraj2023development}. \\
+\hline
+ChatLaw: Open-Source Legal Large Language Model with Integrated External Knowledge Bases & ChatLaw est un modèle de langage large open-source conçu pour le domaine juridique chinois, visant à résoudre le problème des hallucinations du modèle lors de la récupération de données de référence. Le modèle intègre une base de connaissances externe pour améliorer la précision des réponses et est ouvert à la contribution communautaire \cite{cui2023chatlaw}. \\
+\hline
+Generative AI and US Intellectual Property Law & Cet article aborde les implications juridiques et éthiques de L'\ac{ia} générative sur les droits d'auteur, la production de contenu, la collecte de données, la précision de l'information et les droits de propriété intellectuelle, en se concentrant sur les défis posés par les systèmes d'\ac{ia} générative aux droits des créateurs de contenu humains dans le contexte du droit de la propriété intellectuelle aux États-Unis \cite{poland2023generative}. \\
+\hline
+\end{tabular}
+\caption{Résumé des articles sur l'\acf{ia} pour des applications juridiques}
+\label{tab:law-article}
+\end{table}
+
+Chaque jour, de nouvelles publications émergent, poussant les frontières de ce que ces technologies peuvent accomplir dans le secteur juridique.
+
+\newpage
+\subsection{Dans l'industrie}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{12cm}|}
+        \hline
+        \textbf{Service} & \textbf{Description} \\
+        \hline
+        \href{https://legalmasterai.com/}{LegalMasterAI} & Plateforme d'automatisation des tâches juridiques basée sur L'\ac{ia} \\
+        \hline
+        \href{https://ailawyer.pro/fr}{AI Lawyer} & Assistant juridique personnel basé sur L'\ac{ia} pour les recherches et formalités administratives \\
+        \hline
+        \href{https://www.legalai.io/}{LegalAI} & Plateforme mondiale d'intelligence juridique avec accès à une vaste collection d'informations juridiques \\
+        \hline
+        \href{https://vlex.com/}{vLex} & Collection d'informations juridiques provenant de 100 pays \\
+        \hline
+        \href{https://www.harvey.ai/}{Harvey} & Modèles linguistiques juridiques personnalisés pour les cabinets d'avocats \\
+        \hline
+        \href{https://lawchatgpt.com/}{LawChatGPT} & Outil d'\ac{ia} pour des réponses juridiques en langage naturel \\
+        \hline
+        \href{https://www.ai.law/}{AI.law} & Solutions d'automatisation juridique basées sur L'\ac{ia} \\
+        \hline
+        \href{https://juro.com/ai}{Juro} & Plateforme d'automatisation des contrats \\
+        \hline
+        \href{https://www.lexisnexis.com/en-us/products/lexis-plus-ai.page}{LexisNexis} & Solutions d'\ac{ia} pour la recherche juridique et l'analyse des litiges \\
+        \hline
+        \href{https://www.paxton.ai/}{Paxton} & Plateforme d'automatisation des contrats pour accélérer le processus de rédaction et d'examen \\
+        \hline
+        \href{https://www.luminance.com/}{Luminance} & Analyse de documents juridiques basée sur L'\ac{ia} \\
+        \hline
+        \href{https://www.robinai.com/}{RobinAI} & Automatisation des contrats \\
+        \hline
+        \href{https://www.spellbook.legal/}{Spellbook Legal} & Automatisation des contrats avec recherche de clauses contractuelles \\
+        \hline
+        \href{https://www.superlegal.ai/}{SuperLegalAI} & Automatisation des tâches juridiques avec recherche de jurisprudence et rédaction de contrats \\
+        \hline
+    \end{tabular}
+
+    \caption{Résumé des services et applications web d'\acf{ia} pour des applications juridiques}
+    \label{table:law-ai-tool}
+\end{table}
+
+
+
+% %--------------------------------------------------------------------------------------------------------%
+\section{Conclusion}
+
+Ce chapitre a fourni une vue d'ensemble approfondie des modèles \ac{llm}, en mettant en lumière les avancées récentes, les applications marquantes et les défis associés, avec un accent particulier sur les applications juridiques et les chatbots. Grâce à cette exploration, nous avons établi un cadre théorique et contextuel essentiel pour comprendre l'innovation et la pertinence de ce mémoire dans le domaine de l'intelligence artificielle appliquée au droit. 
+
+En conclusion, les perspectives offertes par les \ac{llm} dans le domaine juridique sont vastes et prometteuses, marquant le début d'une nouvelle ère dans laquelle l'intelligence artificielle jouera un rôle central dans la transformation et l'amélioration des services juridiques. Ce mémoire, en explorant ces technologies et leurs applications, aspire à contribuer à cette évolution, en mettant en évidence les opportunités et en naviguant à travers les défis inhérents à cette intégration pionnière.
