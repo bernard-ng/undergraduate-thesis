@@ -133,23 +133,6 @@ rename_files_in_directory(directory_path)
 
 \begin{listing}[!ht]
 \begin{minted}{python}
-def download_pdf(url, path):
-    try:
-        response = requests.get(url, stream=True)
-        response.raise_for_status()
-        filename = os.path.join(path, os.path.basename(urlparse(url).path))
-        with open(filename, 'wb') as pdf_file:
-            for chunk in response.iter_content(chunk_size=8192):
-                pdf_file.write(chunk)
-    except Exception as e:
-        pass
-\end{minted}
-\caption{Télécharge un fichier PDF depuis une URL donnée et l'enregistre dans un dossier local spécifié, en conservant le nom d'origine du fichier.}
-\label{appendix:code:python:pdf-download}
-\end{listing}
-
-\begin{listing}[!ht]
-\begin{minted}{python}
 import os
 import google.generativeai as genai
 import pandas as pd
@@ -172,7 +155,7 @@ questions['model'] = 'gemini-pro'
 questions['answer'] = questions.apply(lambda x: generate_content(x), axis=1)
 questions.to_csv('./data/answers-gemini-pro.csv', index=False)
 \end{minted}
-\caption{Télécharge un fichier PDF depuis une URL donnée et l'enregistre dans un dossier local spécifié, en conservant le nom d'origine du fichier.}
+\caption{Évalutation des modèles Google sur le test de magistrature 2022.}
 \label{appendix:code:python:gemini-pro-evaluation}
 \end{listing}
 
@@ -195,8 +178,13 @@ def generate_content(x):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system",
-             "content": "Tu es un assistant virtuel qui peut répondre à des questions sur le droit congolais."},
+            {
+                "role": "system",
+                "content": """
+                    Tu es un assistant virtuel qui peut répondre 
+                    à des questions sur le droit congolais (RDC).
+                """
+            },
             {"role": "user", "content": prompt}
         ]
     )
@@ -206,6 +194,6 @@ questions['model'] = 'gpt-3.5-turbo'
 questions['answer'] = questions.apply(lambda x: generate_content(x), axis=1)
 questions.to_csv('./data/answers-gpt-3.5-turbo.csv', index=False)
 \end{minted}
-\caption{Télécharge un fichier PDF depuis une URL donnée et l'enregistre dans un dossier local spécifié, en conservant le nom d'origine du fichier.}
+\caption{Évalutation des modèles OpenAI sur le test de magistrature 2022.}
 \label{appendix:code:python:gpt-3-evaluation}
 \end{listing}
