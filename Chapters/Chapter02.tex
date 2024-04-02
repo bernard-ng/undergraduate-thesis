@@ -53,7 +53,7 @@ Il est à noter que, bien que les données ne requièrent pas un format spécifi
 
 La numérisation et l'adoption croissante d'Internet en République Démocratique du Congo (RDC) ont considérablement facilité l'accès aux documents légaux officiels. Désormais, un nombre croissant de ces documents est accessible librement en ligne, offrant une opportunité sans précédent pour la recherche et l'analyse juridique. Des plateformes telles que Leganet.cd \footnote{\href{https://leganet.cd}{https://leganet.cd}} jouent un rôle crucial dans l'agrégation et la diffusion de ces documents, constituant ainsi une ressource inestimable pour les praticiens du droit, les chercheurs, et le grand public intéressé par le droit congolais.
 
-Dans le cadre de notre effort pour enrichir notre modèle avec une base de données complète et à jour sur le droit congolais, nous envisageons d'explorer ces diverses sources en ligne. L'objectif est de collecter un large éventail de documents, allant des textes législatifs et réglementaires aux décisions de justice et aux analyses d'experts, afin de capturer l'étendue et la profondeur du cadre juridique congolais. Cette démarche vise non seulement à fournir à notre modèle une richesse de connaissances et de perspectives sur le droit congolais mais aussi à garantir que les réponses générées soient à la fois informées et pertinentes, reflétant fidèlement les principes et les pratiques juridiques actuels.
+Dans ce cadre nous envisageons d'explorer ces diverses sources en ligne. L'objectif est de collecter un large éventail de documents afin de capturer l'étendue et la profondeur du cadre juridique congolais. Cette démarche vise non seulement à fournir à notre modèle une richesse de connaissances et de perspectives sur le droit congolais mais aussi à garantir que les réponses générées soient à la fois informées et pertinentes, reflétant fidèlement les principes et les pratiques juridiques actuels.
 
 Pour faciliter la découverte et l'exploration de ces ressources en ligne, nous envisageons d'utiliser l'\acs{api} Google Custom Search \footnote{\href{https://developers.google.com/custom-search/v1/introduction}{https://developers.google.com/custom-search/v1/introduction}}. Cet outil nous permettra d'automatiser la recherche et de visualiser rapidement les résultats, identifiant ainsi les sites les plus pertinents et fiables où les documents juridiques Congolais sont disponibles. Cette approche automatisée nous aidera à optimiser le processus de collecte de données, en assurant une couverture des sources d'information juridique pertinentes pour notre modèle.
 
@@ -109,11 +109,13 @@ Le dictionnaire \textbf{params} contient plusieurs paramètres configurés pour 
 
 \textbf{q}: Le terme principal de la recherche. \\
 \textbf{orTerms}: Une chaîne de caractères contenant tous les mots-clés joints par un espace, servant à élargir la recherche à ces termes connexes. \\
-\textbf{fileType}: Restreint les résultats aux fichiers d'un type spécifique, ici des PDF. \\
+\textbf{fileType}: Restreint les résultats aux fichiers d'un type spécifique, ici des \acs{pdf}. \\
 \textbf{lr} : Limite la recherche aux documents dans la langue spécifiée, ici le français. \\
 \textbf{num}: Détermine le nombre de résultats de recherche à retourner, ici 10 résultats.
 
 La fonction est conçue pour récupérer les résultats d'une seule page à la fois. Pour explorer un ensemble plus large de résultats, nous allons nous appuyer sur la constante \textbf{MAX PAGES}. En procédant à une itération, nous collecterons les résultats de plusieurs pages jusqu'à atteindre la limite fixée par \textbf{MAX PAGES}.
+
+\paragraph{Agrégation des sources} \hspace{0pt}
 
 \begin{listing}[!ht]
 \begin{minted}{python}
@@ -175,9 +177,28 @@ df.head(100)
     \label{fig:google-search-result}
 \end{figure}
 
-\newpage
-\newpage
+Suite à l'emploi de l'\acs{api}, nous avons réussi à récolter plus de 100 résultats distincts, couvrant une variété de sites et de plate-formes dédiés au domaine juridique, et plus spécifiquement au contexte Congolais. Ces résultats nous ouvre la voie vers l'étape suivante de notre processus de collecte de données.
+
 \subsection{Collecte des données}
+
+La collecte de données peut être effectuée via diverses méthodes, dépendant de la nature des données visées et du contexte d'utilisation. Parmi les techniques les plus courantes, on trouve les enquêtes et sondages, l'analyse documentaire, l'observation, et l'exploration de données en ligne. Chacune de ces méthodes a ses propres avantages et inconvénients en termes de coût, de temps, de précision et de couverture des données.
+
+Dans le cadre de notre projet, nous avons opté pour le web scraping comme technique principale de collecte de données. Le web scraping est une méthode d'extraction automatique de données à partir de sites web. Cette technique nous permet de récupérer efficacement un grand volume de documents, en particulier des fichiers \acs{pdf} liés au droit congolais, disponibles sur divers sites et plateformes spécialisés.
+
+Le web scraping repose sur l'utilisation de scripts ou de programmes qui envoient des requêtes aux serveurs web, analysent le \acs{html} de la page pour identifier et extraire les informations nécessaires, et sauvegardent ces informations dans un format structuré pour une utilisation ultérieure. Dans notre cas, cette méthode est particulièrement pertinente pour télécharger automatiquement une multitude de documents juridiques, ce qui constitue une ressource inestimable pour notre base de données.
+
+\paragraph{Conception d'un web crawler} \hspace{0pt}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-crawler-architecture.png}
+    \caption{Architecture du web crawler}
+    \label{fig:crawler-architecture}
+\end{figure}
+
+
+\newpage
+\newpage
 \subsection{Création du Dataset}
 \subsection{Pré-traitement et Formalisations des données}
 \subsection{Stockage des données}
