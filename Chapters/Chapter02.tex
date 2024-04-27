@@ -317,7 +317,7 @@ def remove_fragment(url):
 \label{appendix:code:python:remove-fragment}
 \end{listing}
 
-Le processus débute avec la fonction $remove\_fragment$, qui purifie l'\ac{url} de toute portion inutile, permettant ainsi de concentrer le crawl sur les contenus essentiels des pages. Puis, $recursive\_crawl$ prend le relais, visitant chaque \ac{url} unique seulement une fois grâce à l'ensemble $visited\_urls$ qui assure une trace des pages déjà explorées et prévient les boucles infinies.
+ Le processus débute avec la fonction $remove\_fragment$, qui purifie l'\ac{url} de toute portion inutile, permettant ainsi de concentrer le crawl sur les contenus essentiels des pages. Puis, $recursive\_crawl$ prend le relais, visitant chaque \ac{url} unique seulement une fois grâce à l'ensemble $visited\_urls$ qui assure une trace des pages déjà explorées et prévient les boucles infinies.
 
 Lorsqu'une page est visitée, toute \ac{url} se terminant par $.pdf$ est immédiatement transmise à $download_pdf$, qui procède au téléchargement du fichier et le sauvegarde dans un emplacement spécifique sur Google Drive. Tous les autres liens sont examinés et suivis s'ils appartiennent au même domaine que l'\ac{url} de départ, et ce processus se poursuit de façon récursive. C'est une exploration en profondeur, déployant une toile d'araignée qui s'étend sur l'intégralité du site.
 
@@ -391,11 +391,6 @@ Le processus d'extraction de texte des PDF est un défi en soi, car il implique 
 
 L'extraction de texte à partir de documents PDF est une opération qui peut être réalisée avec efficacité en utilisant la bibliothèque Fitz, également connue sous le nom de PyMuPDF \footnote{\href{https://pymupdf.readthedocs.io/en/latest/}{https://pymupdf.readthedocs.io/en/latest/}}.
 
-\paragraph{Extraction du texte sur image} \hspace{0pt}
-
-Pour extraire du texte à partir d'images, telles que des documents scannés ou numérisés, nous faisons appel à Tesseract. Tesseract est un moteur d'\ac{ocr} open source, considéré comme l'un des plus précis disponibles. L'\ac{ocr} est une technologie qui permet de convertir différents types de documents, tels que des images numérisées de texte imprimé, des captures d'écran ou des images contenant du texte, en données de texte modifiables et recherchables \cite{smith_tesseract_2007}.
-
-
 \begin{listing}[!ht]
 \begin{minted}{python}
 def extract_text(pdf_path):
@@ -411,29 +406,7 @@ def extract_text(pdf_path):
             'content': text
         })
 
-        # Extract images and use OCR if necessary
-        image_list = page.get_images(full=True)
-        for image_index, img in enumerate(page.get_images(full=True)):
-            # Get the XREF of the image
-            xref = img[0]
-            # Extract the image bytes
-            base_image = doc.extract_image(xref)
-            image_bytes = base_image["image"]
-        
-            # Open the image with PIL
-            image = Image.open(io.BytesIO(image_bytes))
-            ocr_text = pytesseract.image_to_string(
-                image, 
-                lang='eng',
-                output_type=Output.STRING
-            )
-            
-            extracted_content.append({
-                'page': page_num + 1, 
-                'type': 'image', 
-                'content': ocr_text, 
-                'image_index': image_index + 1
-            })
+        # extract text in image
 
     doc.close()
     return text_content
@@ -442,19 +415,47 @@ def extract_text(pdf_path):
 \label{appendix:code:python:remove-fragment}
 \end{listing}
 
+\paragraph{Extraction du texte sur image} \hspace{0pt}
 
-\newpage
-\newpage
-\subsection{Pré-traitement et Formalisations des données}
-\subsection{Stockage des données}
+Pour extraire du texte à partir d'images, telles que des documents scannés ou numérisés, nous faisons appel à Tesseract. Tesseract est un moteur d'\ac{ocr} open source, considéré comme l'un des plus précis disponibles. L'\ac{ocr} est une technologie qui permet de convertir différents types de documents, tels que des images numérisées de texte imprimé, des captures d'écran ou des images contenant du texte, en données de texte modifiables et recherchables \cite{smith_tesseract_2007}.
 
-\section{Adaption du LLM avec l'approche RAG}
+\begin{listing}[!ht]
+\begin{minted}{python}
+# Extract images and use OCR if necessary
+image_list = page.get_images(full=True)
+for image_index, img in enumerate(page.get_images(full=True)):
+    xref = img[0]
+    # Extract the image bytes
+    base_image = doc.extract_image(xref)
+    image_bytes = base_image["image"]
+    image = Image.open(io.BytesIO(image_bytes))
+    ocr_text = pytesseract.image_to_string(
+        image, 
+        lang='eng',
+        output_type=Output.STRING
+    )
+    
+    extracted_content.append({
+        'page': page_num + 1, 
+        'type': 'image', 
+        'content': ocr_text, 
+        'image_index': image_index + 1
+    })
+\end{minted}
+\caption{Extraction avec OCR sur les images}
+\label{appendix:code:python:text-extract-}
+\end{listing}
+
+\section{Adaptation du LLM avec l'approche RAG}
 \subsection{Pré-traitement et Création des Embeddings}
 \subsection{Construction de l'index de recherche}
 \subsection{Fonction de distance vectorielle}
 \subsection{Requêtes sur l'index de recherche}
 \subsection{Déploiement de l'index de recherche}
 
+
+\newpage
+\newpage
 \section{Adaption du LLM avec l'approche Fine-tuning}
 \subsection{Pré-traitement et Formalisation}
 \subsection{Création du modèle}
