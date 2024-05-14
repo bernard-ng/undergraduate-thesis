@@ -417,35 +417,99 @@ def extract_text(pdf_path):
 
 \paragraph{Extraction du texte sur image} \hspace{0pt}
 
-Pour extraire du texte à partir d'images, telles que des documents scannés ou numérisés, nous faisons appel à Tesseract. Tesseract est un moteur d'\ac{ocr} open source, considéré comme l'un des plus précis disponibles. L'\ac{ocr} est une technologie qui permet de convertir différents types de documents, tels que des images numérisées de texte imprimé, des captures d'écran ou des images contenant du texte, en données de texte modifiables et recherchables \cite{smith_tesseract_2007}.
+Pour extraire du texte à partir d'images, telles que des documents scannés ou numérisés, nous faisons appel à Tesseract. Tesseract est un moteur d'\ac{ocr} open source, considéré comme l'un des plus précis disponibles. L'\ac{ocr} est une technologie qui permet de convertir différents types de documents, tels que des images numérisées de texte imprimé, des captures d'écran ou des images contenant du texte, en données de texte modifiables et recherchables (voir Code~\ref{appendix:code:python:text-extract-images}) \cite{smith_tesseract_2007}.
 
-\begin{listing}[!ht]
-\begin{minted}{python}
-# Extract images and use OCR if necessary
-image_list = page.get_images(full=True)
-for image_index, img in enumerate(page.get_images(full=True)):
-    xref = img[0]
-    # Extract the image bytes
-    base_image = doc.extract_image(xref)
-    image_bytes = base_image["image"]
-    image = Image.open(io.BytesIO(image_bytes))
-    ocr_text = pytesseract.image_to_string(
-        image, 
-        lang='eng',
-        output_type=Output.STRING
-    )
+
+\section{Du texte à la création d'Embeddings}
+
+Dans le domaine de l'\ac{ia}, et plus particulièrement dans celui des \ac{llm}, la compréhension directe du texte en langage naturel par un modèle est "\textbf{impossible}". Au lieu de cela, le texte doit être converti en une forme que le modèle peut traiter : une représentation mathématique. Ce processus est essentiel pour que les modèles apprennent et génèrent du langage humain de manière efficace \cite{Embeddings}.
+
+\subsection{La tokenisation}
+\label{ch:2:section:tokenization}
+
+Le premier pas vers la transformation du texte en données compréhensibles par une machine est la tokenisation. Ce processus consiste à découper le texte en morceaux plus petits, appelés tokens, qui peuvent être des mots, des phrases, ou même des parties de mots. Ces tokens servent de base pour la construction des représentations numériques.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-tokenization.png}
     
-    extracted_content.append({
-        'page': page_num + 1, 
-        'type': 'image', 
-        'content': ocr_text, 
-        'image_index': image_index + 1
-    })
-\end{minted}
-\caption{Extraction avec OCR sur les images}
-\label{appendix:code:python:text-extract-}
-\end{listing}
+    \caption{Exemple de tokenisation avec Open AI tokenizer.}
+    \label{fig:token}
+\end{figure}
 
+\subsection{les Embeddings}
+\label{ch:2:section:embeddings}
+
+Après la tokenisation, chaque token est converti en un vecteur via un processus appelé embedding. Les embeddings sont des représentations vectorielles denses de mots dans un espace continu de dimensions réduites, par rapport au vocabulaire total. Ces vecteurs capturent non seulement l'identité des mots mais aussi les aspects sémantiques et syntaxiques de ceux-ci, ce qui permet au modèle d'établir des liens entre les mots en fonction de leur contexte et de leur usage.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-embeddings.png}
+    \caption{Représentation vectorielle d'un texte \cite{Anala_2020}}
+    \label{fig:crawler-downloading}
+\end{figure}
+
+
+\paragraph{Méthodes d'embeddings} \hspace{0pt}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{3cm}|p{11cm}|}
+\hline
+\textbf{Méthode} & \textbf{Description} \\ \hline
+
+One-hot Encoding & Chaque mot du vocabulaire est représenté par un vecteur où un seul élément est "1" et tous les autres sont "0". Cette méthode est simple mais inefficace pour les grands vocabulaires et ne capture pas les relations sémantiques \cite{onehotencoding}. \\ \hline
+Word2Vec & Développé par Google, Word2Vec utilise un réseau de neurones pour apprendre des vecteurs de mots à partir de grands ensembles de données textuelles. Il existe deux architectures pour Word2Vec : Skip-gram et CBOW (Continuous Bag of Words). Word2Vec est efficace pour capturer les contextes des mots et les relations sémantiques entre eux \cite{mikolov2013efficient}. \\ \hline
+
+GloVe & Une autre méthode populaire qui combine les avantages de la factorisation de la matrice des co-occurrences de mots et des méthodes contextuelles comme Word2Vec. GloVe est particulièrement bon pour saisir des relations subtiles entre les mots \cite{pennington2014glove}. \\ \hline
+
+FastText & Proposé par Facebook, FastText étend Word2Vec pour considérer non seulement les mots mais aussi les séquences de caractères, ce qui le rend efficace pour gérer les mots rares ou mal orthographiés \cite{bojanowski2016enriching}. \\ \hline
+
+Transformers et BERT & Plus récemment, les modèles basés sur l'architecture Transformer, tels que BERT (Bidirectional Encoder Representations from Transformers), utilisent des embeddings contextuels, où la représentation d'un mot peut changer en fonction des mots qui l'entourent dans une phrase. Cela permet une compréhension plus nuancée et dynamique du texte \cite{devlin2018bert}. \\ \hline
+\end{tabular}
+
+\caption{Comparaison des méthodes d'embedding de mots}
+\label{table:word_embedding_methods}
+\end{table}
+
+Il est important de noter que la qualité des embeddings a un impact direct sur la performance du modèle, rendant leur choix et leur implémentation des aspects critiques de la conception des systèmes de \ac{nlp}. 
+
+Il est également essentiel de souligner que la dimension du vecteur généré en fonction des données joue un rôle significatif. En effet, plus la dimension du vecteur est grande, plus il est capable de capturer des nuances fines et complexes du langage. Cependant, il faut également prendre en compte que des vecteurs de plus grandes dimensions requièrent plus de temps pour être générés et peuvent augmenter considérablement la charge computationnelle lors du traitement des données.
+
+\newpage
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{7cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Modèle}            & \textbf{Dimension} & \textbf{Disponibilité} \\ \hline
+Mistral-embed              & 1024               & API payante            \\ \hline
+text-embedding-3-small     & 1536               & API payante            \\ \hline
+text-embedding-3-large     & 3072               & API payante            \\ \hline
+Ollama embedding           & 1024               & Gratuit     \\ \hline
+\end{tabular}
+
+\caption{Comparatif des modèles d'embedding disponibles}
+\label{table:embedding_models}
+\end{table}
+
+
+Dans ce mémoire, nous avons opté pour des embeddings de dimension \textbf{1024}. Ce choix est stratégiquement motivé par deux facteurs clés : 
+\begin{itemize}
+    \item Premièrement, cette dimension offre une flexibilité optimale en termes d'interchangeabilité des modèles générant lesdits embeddings, permettant ainsi une intégration aisée de diverses technologies d'embedding sans compromettre la compatibilité ou la performance.
+
+    \item Deuxièmement, en considérant les ressources financières à notre disposition, la dimension de 1024 est suffisamment large pour capturer une quantité significative de nuances sémantiques tout en restant gérable d'un point de vue computationnel, ce qui est crucial pour limiter les coûts liés à la puissance de calcul et au stockage.
+\end{itemize}
+
+Les différents modèles d'embedding imposent généralement une limite sur la taille du texte pouvant être traité en une seule fois, souvent désignée comme la limite de contexte. Pour contourner cette contrainte et optimiser le traitement des données, nous adopterons une approche où tous nos documents seront subdivisés en segments de 500 caractères chacun. Cette méthode de segmentation nous permet de gérer efficacement les limitations de taille d'entrée tout en préservant le contexte nécessaire à une analyse sémantique significative.
+
+Une fois ces segments générés, nous procéderons à leur embedding avant de les stocker dans une base de données PostgreSQL \footnote{\href{https://www.postgresql.org/}{https://www.postgresql.org/}}. Cette base de données sera configurée avec l'extension "pgvector" \footnote{\href{https://github.com/pgvector/pgvector}{https://github.com/pgvector/pgvector}}, spécialement conçue pour supporter les types de données vectorielles. L'utilisation de PostgreSQL, combinée avec cette extension, nous offre une solution robuste et performante pour la gestion de grands volumes de données vectorielles.
+
+
+\newpage
+\newpage
+\newpage
 \section{Adaptation du LLM avec l'approche RAG}
 \subsection{Pré-traitement et Création des Embeddings}
 \subsection{Construction de l'index de recherche}

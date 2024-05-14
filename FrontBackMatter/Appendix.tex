@@ -11,6 +11,33 @@
 
 \begin{listing}[!ht]
 \begin{minted}{python}
+# Extract images and use OCR if necessary
+image_list = page.get_images(full=True)
+for image_index, img in enumerate(page.get_images(full=True)):
+    xref = img[0]
+    # Extract the image bytes
+    base_image = doc.extract_image(xref)
+    image_bytes = base_image["image"]
+    image = Image.open(io.BytesIO(image_bytes))
+    ocr_text = pytesseract.image_to_string(
+        image, 
+        lang='eng',
+        output_type=Output.STRING
+    )
+    
+    extracted_content.append({
+        'page': page_num + 1, 
+        'type': 'image', 
+        'content': ocr_text, 
+        'image_index': image_index + 1
+    })
+\end{minted}
+\caption{Extraction avec OCR sur les images}
+\label{appendix:code:python:text-extract-images}
+\end{listing}
+
+\begin{listing}[!ht]
+\begin{minted}{python}
 import matplotlib.pyplot as plt
 
 years = [
@@ -134,34 +161,6 @@ rename_files_in_directory(directory_path)
 \begin{listing}[!ht]
 \begin{minted}{python}
 import os
-import google.generativeai as genai
-import pandas as pd
-
-genai.configure(api_key=os.getenv('GOOGLE_KEY'))
-model = genai.GenerativeModel('gemini-pro')
-questions = pd.read_csv('_magistrature.csv')
-
-def generate_content(x):
-    print(f"Answering question: {x['question']}")
-    prompt = f"""
-        Dans le contexte du Droit Congolais (RDC) précisément {x['category']},
-        répondez à la question suivante : {x['question']}
-    """
-
-    response = model.generate_content(prompt)
-    return response.text
-
-questions['model'] = 'gemini-pro'
-questions['answer'] = questions.apply(lambda x: generate_content(x), axis=1)
-questions.to_csv('./data/answers-gemini-pro.csv', index=False)
-\end{minted}
-\caption{Évalutation des modèles Google sur le test de magistrature 2022.}
-\label{appendix:code:python:gemini-pro-evaluation}
-\end{listing}
-
-\begin{listing}[!ht]
-\begin{minted}{python}
-import os
 from openai import OpenAI
 import pandas as pd
 
@@ -196,4 +195,46 @@ questions.to_csv('./data/answers-gpt-3.5-turbo.csv', index=False)
 \end{minted}
 \caption{Évalutation des modèles OpenAI sur le test de magistrature 2022.}
 \label{appendix:code:python:gpt-3-evaluation}
+\end{listing}
+
+\begin{listing}[!ht]
+\begin{minted}{python}
+import matplotlib.pyplot as plt
+
+years = ['gpt3.5-turbo', 'gemini-pro', 'llama2', 'mistral', 'vicuna']
+values = [65.33, 59.20, 43.11, 38.00, 36.44]
+
+fig, ax = plt.subplots(figsize=(12, 6), dpi=100)
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+plt.grid(alpha=0.3, zorder=0, linestyle='dashed', axis='y')
+bars = plt.bar(
+    years, 
+    values, 
+    hatch="/", 
+    color="#9ca3af", 
+    edgecolor="#374151", 
+    alpha=0.8, 
+    width=0.8, 
+    zorder=3
+)
+
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(
+        bar.get_x() + bar.get_width()/2, 
+        yval + 5, 
+        round(yval, 1), 
+        ha='center', 
+        va='bottom', 
+        fontweight="bold"
+    )
+
+plt.ylabel('Résultat au test (en pourcentage)', fontweight="bold")
+plt.show()
+\end{minted}
+\caption{Code python utilisé pour générer la figure \ref{fig:model-result}}
+\label{appendix:code:python:model-result}
 \end{listing}
