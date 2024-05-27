@@ -6,7 +6,7 @@
 
 De prime abord, il est important de souligner que la création d'un \ac{llm} est un processus coûteux et exigeant en termes de données. Les modèles de langage existants, tels que GPT-4 \cite{openai2023gpt4}, ont été développés avec une quantité massive de données et une puissance de calcul considérable. Cependant, pour adapter ces modèles au contexte juridique congolais, il serait peu pratique, voire impossible, de construire un \ac{llm} à partir de zéro en raison de contraintes de ressources.
 
-Inspiré par Heydar Soudani \cite{soudani2024fine}, notre approche consiste à utiliser un modèle de langage existant comme point de départ (voir Table~\ref{table:llm-models}). En prenant un modèle pré-entraîné, nous pouvons bénéficier des connaissances et des capacités linguistiques déjà intégrées dans le modèle. Nous chercherons ensuite à affiner ce modèle pré-entraîné pour le rendre spécifique au système juridique congolais. Pour ce faire, nous utiliserons deux méthodes principales : le \ac{ft} et le \ac{rag}.
+Inspiré par Heydar Soudani \cite{soudani2024fine}, notre approche consiste à utiliser un modèle de langage existant comme point de départ (voir Table~\ref{table:llm-models}). En prenant un modèle pré-entraîné, nous pouvons bénéficier des connaissances et des capacités linguistiques déjà intégrées dans le modèle. Nous chercherons ensuite à affiner ce modèle pré-entraîné pour le rendre spécifique au système juridique congolais. Pour ce faire, nous disposons deux méthodes principales : le \ac{ft} et le \ac{rag}.
 
 \paragraph{\acf{ft}} \hspace{0pt}
 
@@ -16,7 +16,7 @@ Le \ac{ft} implique de prendre un modèle de langage pré-entraîné, tel que GP
 
 En parallèle, nous utiliserons également l'approche du \ac{rag}, qui combine la génération de texte avec des techniques de recherche d'informations. Le \ac{rag} permet au chatbot d'accéder à une base de connaissances juridiques étendue et de récupérer des informations pertinentes en réponse aux requêtes des utilisateurs. En utilisant des index de recherche efficaces et des algorithmes de récupération d'informations, le chatbot peut fournir des réponses bien informées en s'appuyant sur une grande variété de sources \cite{lewis2021retrievalaugmented}.
 
-En définitive, La conception et le développement présentés dans ce mémoire s'articulent autour de deux axes principaux. D'une part, nous nous concentrerons sur le modèle \ac{llm}, en suivant toutes les étapes de conception et de développement détaillées dans la section \ref{ch:1:section:ml-process}. Ce processus englobe la collecte initiale des données brutes jusqu'au déploiement final du modèle sélectionné dans un environnement de production. D'autre part, l'attention sera également portée sur le développement du chatbot, qui agit en tant qu'application web. Cette interface utilisateur servira de pont pour accéder au modèle \ac{llm}, facilitant ainsi l'interaction entre les utilisateurs et le système juridique Congolais à travers le chatbot. 
+La conception et le développement présentés dans ce mémoire s'articulent autour de deux axes principaux. D'une part, nous nous concentrerons sur le modèle \ac{llm}, en suivant toutes les étapes de conception et de développement détaillées dans la section \ref{ch:1:section:ml-process}. Ce processus englobe la collecte initiale des données brutes jusqu'au déploiement final du modèle sélectionné dans un environnement de production. D'autre part, l'attention sera également portée sur le développement du chatbot, qui agit en tant qu'application web. Cette interface utilisateur servira de pont pour accéder au modèle \ac{llm}, facilitant ainsi l'interaction entre les utilisateurs et le système juridique Congolais à travers le chatbot. 
 
 Ce dernier ne représente pas seulement un outil d'accès, mais aussi une manière intuitive et efficace de mettre en application les capacités du modèle \ac{llm}, permettant aux utilisateurs d'obtenir des réponses et des informations juridiques pertinentes de manière interactive.
 
@@ -301,7 +301,7 @@ Les fichiers téléchargés peuvent être directement enregistrés sur le Drive 
 
 \paragraph{Implémentation Récursive} \hspace{0pt}
 
-Avec l'ajout d'une implémentation récursive à notre arsenal, notre crawler transcende les limitations précédentes et s'aventure désormais au-delà d'une page unique. Cette version avancée de notre crawler dispose désormais de la capacité de naviguer méthodiquement à travers un site entier, identifiant et téléchargeant non seulement les documents disponibles sur l'\ac{url} de départ mais aussi en suivant les liens vers d'autres pages pour récupérer les fichiers \ac{pdf} associés.
+Avec l'ajout d'une implémention récursive à notre arsenal, notre crawler transcende les limitations précédentes et s'aventure désormais au-delà d'une page unique. Cette version avancée de notre crawler dispose désormais de la capacité de naviguer méthodiquement à travers un site entier, identifiant et téléchargeant non seulement les documents disponibles sur l'\ac{url} de départ mais aussi en suivant les liens vers d'autres pages pour récupérer les fichiers \ac{pdf} associés.
 
 \begin{listing}[!ht]
 \begin{minted}{python}
@@ -487,6 +487,7 @@ Il est également essentiel de souligner que la dimension du vecteur généré e
 Mistral-embed              & 1024               & API payante            \\ \hline
 text-embedding-3-small     & 1536               & API payante            \\ \hline
 text-embedding-3-large     & 3072               & API payante            \\ \hline
+voyage-2                   & 1024               & API payante            \\ \hline
 Ollama embedding           & 1024               & Gratuit     \\ \hline
 \end{tabular}
 
@@ -506,29 +507,282 @@ Les différents modèles d'embedding imposent généralement une limite sur la t
 
 Une fois ces segments générés, nous procéderons à leur embedding avant de les stocker dans une base de données PostgreSQL \footnote{\href{https://www.postgresql.org/}{https://www.postgresql.org/}}. Cette base de données sera configurée avec l'extension "pgvector" \footnote{\href{https://github.com/pgvector/pgvector}{https://github.com/pgvector/pgvector}}, spécialement conçue pour supporter les types de données vectorielles. L'utilisation de PostgreSQL, combinée avec cette extension, nous offre une solution robuste et performante pour la gestion de grands volumes de données vectorielles.
 
+\newpage
+\section{\acf{rag}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{gfx/fig-rag-architecture.png}
+    \caption{Architecture d'un système \ac{rag} inspiré par \cite{rag_architecture}}.
+    \label{fig:rag-architecture}
+\end{figure}
+
+L'illustration ci-dessus présente l'architecture de notre approche adaptée pour améliorer la pertinence et la précision des réponses générées par un \ac{llm} dans le domaine juridique congolais. Cette architecture combine les techniques avancées de recherche d'information avec la génération de texte pour fournir des réponses contextuelles et fiables.
+
+Le processus débute lorsqu'une question est posée par l'utilisateur, cette question sert de point de départ pour l'ensemble du pipeline :
+
+\subsection{Le modèle d'embedding}
+La question est d'abord transformée en une représentation vectorielle à l'aide d'un modèle d'embedding (voir Table~\ref{table:embedding_models}). L'embedding de la question est ensuite utilisé pour effectuer une recherche par similarité dans une base de données vectorielle. 
+
+\subsection{Base de données vectorielle (Vector Store)}
+\label{ch:2:section:vector-store}
+
+Cette base de données, alimentée par \textit{PostgreSQL} et l'extension \textit{pgvector}, contient des embeddings de documents récoltés précédemment.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{gfx/fig-knowledge-base.png}
+    \caption{Création de la base de connaissance}.
+    \label{fig:knowledge-base}
+\end{figure}
+
+Les documents initiaux sont divisés en segments plus petits. Cette segmentation facilite le traitement et l'analyse des textes en morceaux gérables, ici en sous-parties de 500 caractères et chaque segment de texte résultant de la division est ensuite envoyé à un modèle d'embedding et enfin stocké. 
+
+Pour mesurer la similarité entre l'embedding de la question et les embeddings des documents stockés, diverses fonctions de recherche de similarité peuvent être employées. Parmi celles-ci, les plus couramment utilisées sont :
+
+\begin{itemize}
+    \item[<->] \textbf{Distance Euclidienne (L2)  : } 
+    La distance euclidienne est une mesure de la distance directe entre deux points dans un espace vectoriel.
+    
+    \item[<\#>] \textbf{Produit Scalaire  :} 
+    Le produit scalaire mesure la similarité en calculant la somme des produits des composantes correspondantes de deux vecteurs.
+    
+    \item[<=>] \textbf{Distance Cosinus :}
+    La distance cosinus mesure la similarité entre deux vecteurs en calculant le cosinus de l'angle entre eux.
+    
+    \item[<+>] \textbf{Distance de Manhattan (L1) :}
+    La distance L1, également connue sous le nom de distance de Manhattan, mesure la somme des valeurs absolues des différences entre les composantes correspondantes de deux vecteurs.
+\end{itemize}
+
+Par exemple nous pouvons récupérer le contenu des 5 documents les plus proches de la question de l'utilisateur avec les requêtes \ac{sql} suivantes : 
+
+\hspace{1pt}
+\begin{listing}[!ht]
+\begin{minted}{sql}
+SELECT * FROM documents ORDER BY embedding <-> '[3,1,2]' LIMIT 5;
+SELECT * FROM documents ORDER BY (embedding <#> '[3,1,2]') * -1 LIMIT 5;
+SELECT * FROM documents ORDER BY 1 - (embedding <=> '[3,1,2]') LIMIT 5;
+\end{minted}
+\caption{Exemple de requêtes \ac{sql} sur les distances entre vecteurs}
+\label{appendix:code:sql:embeddings-distances}
+\end{listing}
+
+\subsection{Le contexte}
+
+\begin{listing}[!ht]
+\begin{minted}{php}
+public string $systemMessageTemplate = <<<TEMPLATE
+    Ton nom est Juro crée par Bernard Ngandu, tu es un expert en Droit Congolais (RDC),
+    ton objectif est de vulgariser le droit congolais et de répondre aux questions en 
+    utilisant les éléments de CONTEXT suivants. si aucun CONTEXT ne t'es fourni, 
+    précise que tu ne peux pas répondre directement à la question
+
+    Si tu ne connais pas la réponse ou que cela ne cadre pas avec le Droit congolais, 
+    dis simplement que tu ne sais pas, tu n'as pas suffisamment d'information
+    pour répondre avec précision ou que tu ne réponds qu'au question qui concerne droit.
+
+    n'essayez pas d'inventer une réponse, à chacune de tes réponses 
+    tu dois explicitement résumer la question et utiliser le CONTEXT 
+    pour formuler ta réponse. utilise un langage accessible si nécessaire 
+    mets entre parenthèse les termes techniques,
+    si tu as une réponse qui va au délà du cadre du droit congolais, 
+    précise "en droit comparé" ou "en droit international" 
+    n'hésite pas à demander des précisions 
+    si tu as besoin de plus d'informations pour répondre à la question.
+    n'hésite pas à donner des exemples pour illustrer ta réponse.
+    si une question te concerne directement, tu peux répondre 
+    en utilisant le "je" ou "moi" pour te référer à toi-même.
+    ne reprends pas cette description dans tes réponses.
+
+    CONTEXT : {context}
+TEMPLATE;
+\end{minted}
+\caption{Le message système}
+\label{appendix:code:php:system-message-template}
+\end{listing}
+
+Une fois que des documents pertinents ont été trouvés, ils permettent de créer un contexte riche et informatif. Ce contexte contient tous les éléments nécessaires pour répondre précisément à la question de l'utilisateur et joue un rôle crucial dans la direction que prendra la génération de la réponse par le \ac{llm}.
+
+Pour guider le \ac{llm} de manière efficace, nous utiliserons un message système. Ce message contient des instructions spécifiques que le \ac{llm} devra suivre pour générer une réponse. il sert de cadre et de guide, assurant que le modèle comprend bien la nature de la question, les attentes en termes de format et de contenu de la réponse, et les aspects spécifiques du contexte qui doivent être pris en compte.
+
 
 \newpage
-\newpage
-\newpage
-\section{Adaptation du LLM avec l'approche RAG}
-\subsection{Pré-traitement et Création des Embeddings}
-\subsection{Construction de l'index de recherche}
-\subsection{Fonction de distance vectorielle}
-\subsection{Requêtes sur l'index de recherche}
-\subsection{Déploiement de l'index de recherche}
-
-
-\newpage
-\newpage
-\section{Adaption du LLM avec l'approche Fine-tuning}
-\subsection{Pré-traitement et Formalisation}
-\subsection{Création du modèle}
-\subsection{Déploiement du modèle}
-
 \section{Conception de l'application Web}
-\subsection{Modélisation de la base de données}
-\subsection{Architecture et choix technologique}
-\subsection{Diagrammes UML}
-\subsection{Développement}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{gfx/fig-juro-architecture.png}
+    \caption{Architecture du chatbot}.
+    \label{fig:juro-architecture}
+\end{figure}
+
+Maintenant que nous avons les données et l'architecture \ac{rag} en place, nous allons aborder la conception et le développement du chatbot. Ce chatbot est constitué de trois principaux composants : un frontend, une \ac{api}, et le système \ac{rag}. Dans cette section, nous détaillerons le frontend et l'\ac{api}, ainsi que leur interaction avec le système \ac{rag}, nous choissons le nom "Juro" pour notre chatbot, inspiré de la contraction "Juridique" et "Robot".
+
+\subsection{Le frontend}
+
+Le frontend de notre application est développé en utilisant React \footnote{\href{https://fr.react.dev/}{https://fr.react.dev/}}, une bibliothèque JavaScript populaire pour la construction d'interfaces utilisateur dynamiques et réactives. Le frontend sert de point de contact principal pour les utilisateurs, leur permettant de poser des questions et de recevoir des réponses de manière intuitive et conviviale
+
+\paragraph{Les fonctionnalités} \hspace{0pt}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{12cm}|l|}
+\hline
+\textbf{Fonctionnalité} & \textbf{Importance} \\ \hline
+S'inscrire              & Haute               \\ \hline
+S'authentifier          & Haute               \\ \hline
+Créer un nouveau chat   & Haute               \\ \hline
+Consulter les chats     & Moyenne             \\ \hline
+Envoyer un message      & Haute               \\ \hline
+Renommer un chat        & Faible              \\ \hline
+Supprimer un chat       & Moyenne             \\ \hline
+Choisir un chat proposé & Moyenne             \\ \hline
+\end{tabular}
+\caption{Cas d'utilisation et leur importance}
+\label{tab:use_cases}
+\end{table}
+
+Les fonctionnalités critiques pour le fonctionnement de base du système sont marquées comme "Haute", tandis que les fonctionnalités additionnelles ou de gestion ont des niveaux d'importance variables (moyenne ou faible).
+
+
+\begin{itemize}
+    \item \textbf{S'inscrire :} Permet à un nouvel utilisateur de créer un compte. Cela inclut la saisie d'informations personnelles telles que l'adresse e-mail, le nom d'utilisateur et le mot de passe.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-register-seq.png}
+        \caption{Diagramme de séquence pour l'inscription}.
+        \label{fig:register-sequence}
+    \end{figure}
+
+    Dans ce diagramme de séquence, l'alt (alternative) montre les deux possibilités : si les identifiants sont corrects, l'utilisateur est authentifié ; sinon, un message d'erreur est affiché et l'utilisateur est invité à saisir à nouveau ses identifiants jusqu'à ce qu'ils soient corrects.
+
+    \newpage
+    \item \textbf{S’authentifier :}  Permet à un utilisateur existant de se connecter à la plateforme en fournissant ses identifiants (nom d'utilisateur et mot de passe).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-login-seq.png}
+        \caption{Diagramme de séquence pour la connexion}.
+        \label{fig:login-seq}
+    \end{figure}
+
+    Dans ce diagramme de séquence, l'alt (alternative) montre les deux possibilités : si les informations sont valides et que l'utilisateur n'existe pas, l'inscription est confirmée ; sinon, un message d'erreur est affiché et l'utilisateur est invité à saisir à nouveau ses informations jusqu'à ce qu'elles soient correctes.
+
+    \newpage
+    \item \textbf{Créer un nouveau chat :} Permet à l'utilisateur de créer une nouvelle session de chat. L'utilisateur peut nommer cette session et commencer à interagir avec le chatbot.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-create-chat-seq.png}
+        \caption{Diagramme de séquence pour la création d'un chat}.
+        \label{fig:create-chat-seq}
+    \end{figure}
+
+    \item \textbf{Envoyer un message :} Permet à l'utilisateur d'envoyer un message dans une session de chat active. Le message est traité par le système \ac{rag} pour générer une réponse appropriée.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-send-message-fig.png}
+        \caption{Diagramme de séquence pour l'envoie d'un message}.
+        \label{fig:send-message-seq}
+    \end{figure}
+
+    \newpage
+    \item \textbf{Renommer un chat :} Permet à l'utilisateur de modifier le nom d'une session de chat existante pour une meilleure organisation.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-rename-chat-seq.png}
+        \caption{Diagramme de séquence pour modifier du chat}.
+        \label{fig:rename-chat-seq}
+    \end{figure}
+
+    \item \textbf{Supprimer un chat :} Permet à l'utilisateur de supprimer une session de chat existante. Cette action est irréversible et supprimera toutes les données associées au chat.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-delet-chat-seq.png}
+        \caption{Diagramme de séquence pour la suppression du chat}.
+        \label{fig:delete-chat-seq}
+    \end{figure}
+
+    \item \textbf{Consulter les chats :} Permet à l'utilisateur de voir la liste de toutes les sessions de chat créées. L'utilisateur peut sélectionner un chat pour le consulter ou pour effectuer d'autres actions comme renommer ou supprimer.
+
+    \item \textbf{Choisir un chat proposé :} Permet à l'utilisateur de sélectionner un chat parmi une liste de chats proposés, basée sur des suggestions ou des chats précédemment sauvegardés.
+\end{itemize}
+
+
+\subsection{Le backend - API}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{gfx/fig-api-architecture.png}
+    \caption{Architecture du backend et services tiers}.
+    \label{fig:api-architecture}
+\end{figure}
+
+L'architecture backend de notre application repose sur plusieurs technologies clés qui travaillent ensemble pour fournir une expérience utilisateur fluide et performante
+
+\begin{itemize}
+    \item \textbf{REST API :}
+    API Platform \footnote{\href{https://api-platform.com/}{https://api-platform.com/}} est un framework utilisé pour créer des \ac{api} \ac{rest} robustes et bien structurées. Elle facilite la communication entre le frontend et le backend en exposant des endpoints que le frontend peut appeler pour interagir avec le système.
+    
+    Les requêtes \ac{http} envoyées par le frontend sont reçues par API Platform, qui les traite et les dirige vers les contrôleurs appropriés dans le backend.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{gfx/fig-api-doc.png}
+        \caption{Documentation de l'API générer par API Platform}.
+        \label{fig:api-doc}
+    \end{figure}
+
+    \item \textbf{Backend (Symfony) :}
+    Symfony \footnote{\href{https://symfony.com/}{https://symfony.com/}} est le framework \acs{php} utilisé pour développer le backend de l'application. Il fournit une structure solide pour construire des applications web robustes, en facilitant la gestion des requêtes, la logique métier, et les services.
+    
+    Lorsque API Platform reçoit une requête, il appelle les contrôleurs Symfony qui contiennent la logique nécessaire pour traiter la requête. Symfony gère également les interactions avec le système RAG et la base de données.
+
+    \item \textbf{ORM (Doctrine) :}
+    Doctrine \footnote{\href{https://www.doctrine-project.org/}{https://www.doctrine-project.org/}} est un \ac{orm} utilisé pour interagir avec la base de données de manière abstraite. Il permet de manipuler les données en utilisant des objets \acs{php} plutôt que des requêtes \acs{sql} brutes.
+    
+    Les contrôleurs Symfony utilisent Doctrine pour accéder à la base de données PostgreSQL. Doctrine traduit les opérations sur les objets \acs{php} en requêtes \acs{sql} et les exécute sur la base de données.
+
+    \item \textbf{Base de donnée (PostgreSQL) :}
+    PostgreSQL est le système de gestion de base de données relationnelle utilisé pour stocker les données de l'application, y compris les utilisateurs, les messages, les chats, et les embeddings.
+    
+    Doctrine interagit directement avec PostgreSQL pour effectuer des opérations de lecture et d'écriture. Les données sont stockées et récupérées selon les besoins de l'application.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=10cm]{gfx/fig-database-schema.png}
+        \caption{Diagramme relationnel d'entité}
+        \label{fig:database-schema}
+    \end{figure}
+
+    \item \textbf{RAG System (LLPhant) :}
+    LLPhant \footnote{\href{https://llphant.io/}{https://llphant.io/}} est un framework utilisé pour générer des réponses en utilisant des modèles d'\ac{ia}. Il combine des techniques de récupération d'informations et de génération de texte pour fournir des réponses précises et contextuelles.
+    
+    Lorsqu'une requête nécessite une réponse contextuelle, Symfony appelle le système \ac{rag}. Ce système utilise les embeddings stockés dans PostgreSQL pour trouver les documents pertinents, puis génère une réponse en s'appuyant sur des modèles d'\ac{ia} (comme ceux de Mistral AI \footnote{\href{https://console.mistral.ai/}{https://console.mistral.ai/}} et OpenAI \footnote{\href{https://openai.com/}{https://openai.com/}}).
+
+    \item \textbf{Les modèles d'\ac{ia}}
+    Ces modèles d'\ac{ia} sont utilisés pour convertir les questions en embeddings et générer des réponses basées sur les documents récupérés.
+    
+    Le système \ac{rag} envoie les questions aux modèles d'\ac{ia} pour les convertir en embeddings. Il utilise également ces modèles pour générer des réponses contextuelles basées sur les informations récupérées de la base de données.
+\end{itemize}
 
 \section{Déploiement et mis en production}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-deploy-architecture.png}
+    \caption{Architecture de production}
+    \label{fig:deploy-architecture}
+\end{figure}
+
+Toutes les composantes de l'application (NGINX \footnote{\href{https://nginx.org/}{https://nginx.org/}}, frontend, backend) sont déployées sur l'infrastructure AWS \footnote{\href{https://aws.amazon.com/}{https://aws.amazon.com/}}, assurant scalabilité, fiabilité et disponibilité.
+
+NGINX, Sert de serveur web et de reverse proxy pour gérer les requêtes des utilisateurs. NGINX distribue les requêtes entre le frontend et le backend, selon le type de requête (client-side vs server-side).
+
+\section{Conclusion}
+
+ce chapitre a fourni une vue d'ensemble complète et détaillée des différentes étapes et composantes impliquées dans la conception, le développement et le déploiement de notre chatbot juridique, mettant en évidence les choix technologiques et les stratégies d'implémentation adoptées pour créer un système performant et fiable.
