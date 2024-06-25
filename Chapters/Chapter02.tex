@@ -4,18 +4,6 @@
 
 \label{ch:2} % For referencing the chapter elsewhere, use \autoref{ch:3} 
 
-De prime abord, il est important de souligner que la création d'un \ac{llm} est un processus coûteux et exigeant en termes de données. Les modèles de langage existants, tels que GPT-4 \cite{openai2023gpt4}, ont été développés avec une quantité massive de données et une puissance de calcul considérable. Cependant, pour adapter ces modèles au contexte juridique congolais, il serait peu pratique, voire impossible, de construire un \ac{llm} à partir de zéro en raison de contraintes de ressources.
-
-Inspiré par Heydar Soudani \cite{soudani2024fine}, notre approche consiste à utiliser un modèle de langage existant comme point de départ (voir Table~\ref{table:llm-models}). En prenant un modèle pré-entraîné, nous pouvons bénéficier des connaissances et des capacités linguistiques déjà intégrées dans le modèle. Nous chercherons ensuite à affiner ce modèle pré-entraîné pour le rendre spécifique au système juridique congolais. Pour ce faire, nous disposons deux méthodes principales : le \ac{ft} et le \ac{rag}.
-
-\paragraph{\acf{ft}} \hspace{0pt}
-
-Le \ac{ft} implique de prendre un modèle de langage pré-entraîné, tel que GPT-4, et de le spécialiser pour le domaine spécifique du système juridique Congolais. Cette méthode consiste à ajuster les poids du modèle en le nourrissant avec des données spécifiques au contexte juridique Congolais. En utilisant des corpus de textes juridiques, des décisions de justice et d'autres ressources pertinentes, nous entraînerons le modèle à comprendre et à générer des réponses cohérentes et précises aux questions juridiques \cite{yue2023disclawllm}.
-
-\paragraph{\acf{rag}} \hspace{0pt}
-
-En parallèle, nous utiliserons également l'approche du \ac{rag}, qui combine la génération de texte avec des techniques de recherche d'informations. Le \ac{rag} permet au chatbot d'accéder à une base de connaissances juridiques étendue et de récupérer des informations pertinentes en réponse aux requêtes des utilisateurs. En utilisant des index de recherche efficaces et des algorithmes de récupération d'informations, le chatbot peut fournir des réponses bien informées en s'appuyant sur une grande variété de sources \cite{lewis2021retrievalaugmented}.
-
 La conception et le développement présentés dans ce mémoire s'articulent autour de deux axes principaux. D'une part, nous nous concentrerons sur le modèle \ac{llm}, en suivant toutes les étapes de conception et de développement détaillées dans la section \ref{ch:1:section:ml-process}. Ce processus englobe la collecte initiale des données brutes jusqu'au déploiement final du modèle sélectionné dans un environnement de production. D'autre part, l'attention sera également portée sur le développement du chatbot, qui agit en tant qu'application web. Cette interface utilisateur servira de pont pour accéder au modèle \ac{llm}, facilitant ainsi l'interaction entre les utilisateurs et le système juridique Congolais à travers le chatbot. 
 
 Ce dernier ne représente pas seulement un outil d'accès, mais aussi une manière intuitive et efficace de mettre en application les capacités du modèle \ac{llm}, permettant aux utilisateurs d'obtenir des réponses et des informations juridiques pertinentes de manière interactive.
@@ -199,7 +187,7 @@ Dans notre cas, l'objectif s'affine vers une recherche plus ciblée : nous vison
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{gfx/fig-crawler-architecture.png}
+    \includegraphics[width=12 cm]{gfx/fig-crawler-architecture.png}
     \caption{Architecture du web crawler [le nôtre]}
     \label{fig:crawler-architecture}
 \end{figure}
@@ -440,8 +428,7 @@ Le premier pas vers la transformation du texte en données compréhensibles par 
 \subsection{les Embeddings}
 \label{ch:2:section:embeddings}
 
-Après la tokenisation, chaque token est converti en un vecteur via un processus appelé embedding. Les embeddings sont des représentations vectorielles denses de mots dans un espace continu de dimensions réduites, par rapport au vocabulaire total. Ces vecteurs capturent non seulement l'identité des mots mais aussi les aspects sémantiques et syntaxiques de ceux-ci, ce qui permet au modèle d'établir des liens entre les mots en fonction de leur contexte et de leur usage.
-
+Après la tokenisation, l'ensemble de tokens sont convertis en un vecteur via un processus appelé embedding. Les embeddings sont des représentations vectorielles denses de mots dans un espace continu de dimensions réduites, par rapport au vocabulaire total. Ces vecteurs capturent non seulement l'identité des mots mais aussi les aspects sémantiques et syntaxiques de ceux-ci, ce qui permet au modèle d'établir des liens entre les mots en fonction de leur contexte et de leur usage (voir section~\ref{ch:1:section:embeddings}).
 
 \begin{figure}[H]
     \centering
@@ -450,7 +437,7 @@ Après la tokenisation, chaque token est converti en un vecteur via un processus
     \label{fig:crawler-downloading}
 \end{figure}
 
-
+\newpage
 \paragraph{Méthodes d'embeddings} \hspace{0pt}
 
 \begin{table}[h]
@@ -510,6 +497,12 @@ Une fois ces segments générés, nous procéderons à leur embedding avant de l
 \newpage
 \section{\acf{rag}}
 
+De prime abord, il est important de souligner que la création d'un \ac{llm} est un processus coûteux et exigeant en termes de données. Les modèles de langage existants, tels que GPT-4 \cite{openai2023gpt4}, ont été développés avec une quantité massive de données et une puissance de calcul considérable. Cependant, pour adapter ces modèles au contexte juridique congolais, il serait peu pratique, voire impossible, de construire un \ac{llm} à partir de zéro en raison de contraintes de ressources.
+
+Inspiré par Heydar Soudani \cite{soudani2024fine}, notre approche consiste à utiliser un modèle de langage existant comme point de départ (voir Table~\ref{table:llm-models}). En prenant un modèle pré-entraîné, nous pouvons bénéficier des connaissances et des capacités linguistiques déjà intégrées dans le modèle. Nous chercherons ensuite à affiner ce modèle pré-entraîné pour le rendre spécifique au système juridique congolais. 
+
+l'approche du \ac{rag}, combine la génération de texte avec des techniques de recherche d'informations. Le \ac{rag} permet au chatbot d'accéder à une base de connaissances juridiques étendue et de récupérer des informations pertinentes en réponse aux requêtes des utilisateurs. En utilisant des index de recherche efficaces et des algorithmes de récupération d'informations, le chatbot peut fournir des réponses bien informées en s'appuyant sur une grande variété de sources \cite{lewis2021retrievalaugmented}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=12cm]{gfx/fig-rag-architecture.png}
@@ -517,7 +510,7 @@ Une fois ces segments générés, nous procéderons à leur embedding avant de l
     \label{fig:rag-architecture}
 \end{figure}
 
-L'illustration ci-dessus présente l'architecture de notre approche adaptée pour améliorer la pertinence et la précision des réponses générées par un \ac{llm} dans le domaine juridique congolais. Cette architecture combine les techniques avancées de recherche d'information avec la génération de texte pour fournir des réponses contextuelles et fiables.
+L'illustration ci-dessus présente l'architecture de notre approche adaptée pour améliorer la pertinence et la précision des réponses générées par un \ac{llm} dans le domaine juridique congolais.
 
 Le processus débute lorsqu'une question est posée par l'utilisateur, cette question sert de point de départ pour l'ensemble du pipeline :
 
@@ -572,27 +565,11 @@ SELECT * FROM documents ORDER BY 1 - (embedding <=> '[3,1,2]') LIMIT 5;
 \begin{listing}[!ht]
 \begin{minted}{php}
 public string $systemMessageTemplate = <<<TEMPLATE
-    Ton nom est Juro crée par Bernard Ngandu, tu es un expert en Droit Congolais (RDC),
-    ton objectif est de vulgariser le droit congolais et de répondre aux questions en 
-    utilisant les éléments de CONTEXT suivants. si aucun CONTEXT ne t'es fourni, 
+    Ton nom est Juro crée par Bernard Ngandu, 
+    Tu es un expert en Droit Congolais (RDC), ton objectif est de vulgariser 
+    le droit congolais et de répondre aux questions en utilisant 
+    les éléments de CONTEXT suivants. si aucun CONTEXT ne t'es fourni, 
     précise que tu ne peux pas répondre directement à la question
-
-    Si tu ne connais pas la réponse ou que cela ne cadre pas avec le Droit congolais, 
-    dis simplement que tu ne sais pas, tu n'as pas suffisamment d'information
-    pour répondre avec précision ou que tu ne réponds qu'au question qui concerne droit.
-
-    n'essayez pas d'inventer une réponse, à chacune de tes réponses 
-    tu dois explicitement résumer la question et utiliser le CONTEXT 
-    pour formuler ta réponse. utilise un langage accessible si nécessaire 
-    mets entre parenthèse les termes techniques,
-    si tu as une réponse qui va au délà du cadre du droit congolais, 
-    précise "en droit comparé" ou "en droit international" 
-    n'hésite pas à demander des précisions 
-    si tu as besoin de plus d'informations pour répondre à la question.
-    n'hésite pas à donner des exemples pour illustrer ta réponse.
-    si une question te concerne directement, tu peux répondre 
-    en utilisant le "je" ou "moi" pour te référer à toi-même.
-    ne reprends pas cette description dans tes réponses.
 
     CONTEXT : {context}
 TEMPLATE;
@@ -783,6 +760,85 @@ Toutes les composantes de l'application (NGINX \footnote{\href{https://nginx.org
 
 NGINX, Sert de serveur web et de reverse proxy pour gérer les requêtes des utilisateurs. NGINX distribue les requêtes entre le frontend et le backend, selon le type de requête (client-side vs server-side).
 
-\section{Conclusion}
+\subsection{Configuration du pare-feu}
 
+Une fois une instance (machine virtuelle) créée, nous pouvons y attacher une adresse \ac{ip} statique. Cette adresse \ac{ip} statique garantit que l'adresse attribuée à l'instance ne changera pas après un redémarrage ou une ré-initialisation de celle-ci, assurant ainsi une accessibilité constante et fiable.
+
+Pour sécuriser notre plateforme, nous mettons en place des mesures strictes de contrôle des accès. Nous restreignons l'ouverture des ports réseau uniquement à ceux nécessaires au fonctionnement de nos services. Les ports autorisés sont :
+
+\begin{itemize}
+    \item \textbf{SSH (port 22)} : Utilisé pour les connexions sécurisées à distance, permettant aux administrateurs de gérer l'instance de manière sécurisée.
+    
+    \item \textbf{HTTP (port 80)} : Utilisé pour le trafic web non sécurisé, permettant aux utilisateurs d'accéder à l'application web.
+    
+    \item \textbf{HTTPS (port 443)} : Utilisé pour le trafic web sécurisé, garantissant que les données transmises entre l'utilisateur et le serveur sont cryptées.
+    
+    \item \textbf{PostgreSQL (port 5432)} : Utilisé pour les connexions à la base de données PostgreSQL, permettant aux services backend de lire et d'écrire des données de manière sécurisée.
+\end{itemize}
+
+En limitant l'accès à ces ports spécifiques, nous minimisons les risques d'attaques potentielles en réduisant la surface d'attaque disponible. Cela contribue à protéger notre infrastructure et à garantir que seuls les services nécessaires sont accessibles, tout en empêchant les accès non autorisés aux autres ports. Cette stratégie de sécurité est cruciale pour maintenir l'intégrité et la confidentialité de notre plateforme.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-firewall.png}
+    \caption{Configuration Firewall}
+    \label{fig:firewall}
+\end{figure}
+
+\subsection{Configuration du nom de domaine, DNS}
+
+Pour la configuration \ac{dns}, nous ajoutons un enregistrement de type A pour lier le nom de domaine "juro.life" à l'adresse \ac{ip} statique de notre instance. Cet enregistrement de type A assure que toute requête dirigée vers "juro.life" est résolue en direction de l'adresse \ac{ip} associée, permettant aux utilisateurs d'accéder à notre application de manière fiable.
+
+Afin de gérer les sous-domaines de manière efficace, nous utilisons la même adresse \ac{ip} statique. Cela signifie que nous créons des enregistrements \ac{dns} supplémentaires pour chaque sous-domaine requis, tels que "api.juro.life" et "www.juro.life", et les faisons pointer vers la même adresse \ac{ip} statique. Cette approche simplifie la gestion \ac{dns} et garantit que toutes les sous-domaines de notre domaine principal sont correctement résolus vers notre instance.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-dns-record.png}
+    \caption{Configuration \acf{dns}}
+    \label{fig:dns}
+\end{figure}
+
+\subsection{Configuration du reserve proxy}
+
+Maintenant que nous avons une adresse \ac{ip} statique et un nom de domaine pointant vers cette adresse, nous pouvons configurer notre serveur pour rediriger les requêtes \ac{http} associées au domaine ou aux sous-domaines vers les applications appropriées qui tournent sur le serveur. De plus, nous mettons en place une redirection \ac{https} pour assurer que toutes les communications entre les utilisateurs et notre application sont sécurisées.
+
+\begin{listing}[!ht]
+\begin{minted}{text}
+server {
+    server_name api.juro.life;
+    root /var/www/html/juro-api/public;
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    location / {
+        root /var/www/html/juro-api;
+        try_files /public/$uri /assets/$uri /index.php?$query_string;
+    }
+}
+\end{minted}
+\caption{Exemple de configuration du server web}
+\label{appendix:code:conf:web-nginx}
+\end{listing}
+
+Pour assurer la sécurité des communications, nous redirigeons automatiquement les requêtes \ac{http} vers \ac{https}. Voici comment configurer cette redirection dans NGINX
+
+\begin{listing}[!ht]
+\begin{minted}{text}
+server {
+    if ($host = api.juro.life) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+
+    server_name api.juro.life;
+    return 404;
+}
+\end{minted}
+\caption{Exemple de rédirection automatique vers HTTPS}
+\label{appendix:code:conf:web-http}
+\end{listing}
+
+En configurant NGINX de cette manière, nous assurons que toutes les requêtes \ac{http} vers notre domaine et ses sous-domaines sont correctement redirigées vers les applications respectives. De plus, en forçant les redirections vers \ac{https}, nous garantissons la sécurité des communications entre les utilisateurs et notre serveur. Cette configuration robuste permet de gérer efficacement les accès à notre plateforme tout en maintenant un haut niveau de sécurité.
+
+\section{Résumé du chapitre}
 ce chapitre a fourni une vue d'ensemble complète et détaillée des différentes étapes et composantes impliquées dans la conception, le développement et le déploiement de notre chatbot juridique, mettant en évidence les choix technologiques et les stratégies d'implémentation adoptées pour créer un système performant et fiable.

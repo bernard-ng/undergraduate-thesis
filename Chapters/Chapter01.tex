@@ -72,7 +72,7 @@ L'apprentissage est un processus itératif qui se fait au travers de ce qu'on ap
     \label{fig:mlprocess}
 \end{figure}
 
-L'ensemble d'entraînement sert à ajuster les paramètres du modèle, tandis que l'ensemble de test est utilisé pour évaluer sa performance. L'ensemble de validation, lorsqu'il est présent, aide à affiner les hyperparamètres \footnote{paramètres qui définissent la structure du modèle et son comportement, comme le taux d'apprentissage} du modèle et à éviter le surapprentissage \footnote{"Le surajustement est un comportement indésirable d'apprentissage automatique qui se produit lorsque le modèle d'apprentissage automatique fournit des prédictions précises pour les données d'entraînement mais pas pour les nouvelles données." \cite{overfitting}} en fournissant une couche d'évaluation supplémentaire avant le test final. Tout au long de ce processus, tant les hyperparamètres que les paramètres \footnote{poids et biais ajustés au cours de l'apprentissage} sont ajustés et optimisés dans le but de minimiser l'erreur de prédiction du modèle. Cet ajustement méthodique assure une amélioration continue de la performance du modèle, le rendant de plus en plus précis dans ses prédictions ou classifications sur des données non vues auparavant.
+L'ensemble d'entraînement sert à ajuster les paramètres du modèle, tandis que l'ensemble de test est utilisé pour évaluer sa performance. L'ensemble de validation, lorsqu'il est présent, aide à affiner les hyperparamètres \footnote{Paramètres qui définissent la structure du modèle et son comportement, comme le taux d'apprentissage} du modèle et à éviter le surapprentissage \footnote{"Le surajustement est un comportement indésirable d'apprentissage automatique qui se produit lorsque le modèle d'apprentissage automatique fournit des prédictions précises pour les données d'entraînement mais pas pour les nouvelles données." \cite{overfitting}} en fournissant une couche d'évaluation supplémentaire avant le test final. Tout au long de ce processus, tant les hyperparamètres que les paramètres \footnote{Poids et biais ajustés au cours de l'apprentissage} sont ajustés et optimisés dans le but de minimiser l'erreur de prédiction du modèle. Cet ajustement méthodique assure une amélioration continue de la performance du modèle, le rendant de plus en plus précis dans ses prédictions ou classifications sur des données non vues auparavant.
 
 
 Les types d'apprentissage en \ac{ml} sont généralement classés en trois grandes catégories :
@@ -80,90 +80,12 @@ Les types d'apprentissage en \ac{ml} sont généralement classés en trois grand
 \begin{itemize}
     \item \textbf{Apprentissage supervisé} : Dans cette approche, le modèle apprend à partir d'un ensemble de données étiqueté, où chaque exemple d'entraînement comprend des entrées et les sorties correspondantes. Le but est de permettre au modèle de prédire la sortie associée à de nouvelles entrées inédites. Des exemples classiques incluent la régression linéaire et la classification.
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=10cm]{gfx/fig-supervised-learning.png}
-        \caption{Apprentissage supervisé.}
-        \label{fig:supervised-learning}
-    \end{figure}
-
     \item \textbf{Apprentissage non supervisé} : Ici, le modèle travaille sur des données non étiquetées, apprenant à identifier les structures et les motifs inhérents sans aucune indication de sortie désirée. Les algorithmes d'apprentissage non supervisé, tels que le clustering ou la réduction de dimensionnalité, visent à découvrir des groupements naturels dans les données ou à simplifier les données tout en conservant leur structure essentielle.
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=10cm]{gfx/fig-unsupervised-learning.png}
-        \caption{Apprentissage non supervisé.}
-        \label{fig:unsupervised-learning}
-    \end{figure}
-
     \item \textbf{Apprentissage par renforcement} : Dans l'apprentissage par renforcement, un agent apprend à prendre des décisions en exécutant des actions dans un environnement afin de maximiser une certaine notion de récompense cumulative. C'est une approche dynamique où l'apprentissage est guidé par les interactions de l'agent avec l'environnement et les retours (récompenses) reçus pour ses actions.
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=10cm]{gfx/fig-reinforcement-learning.png}
-        \caption{Apprentissage par renforcement.}
-        \label{fig:reinforcement-learning}
-    \end{figure}
 \end{itemize}
 
-Ces différents types d'apprentissage sont adaptés à diverses tâches. Ces tâches peuvent être regroupées en plusieurs catégories principales, chacune répondant à des objectifs spécifiques et utilisant des types de modèles appropriés. Voici une énumération de certaines des tâches les plus communes, comme détaillé par Giuseppe Bonaccorso dans \cite{Bonaccorso_2018} :
-
-\begin{enumerate}
-    \item Régression
-    
-    La régression vise à prédire une valeur continue ou quantitative basée sur une ou plusieurs variables indépendantes. Elle est souvent utilisée pour estimer des phénomènes tels que les prix des logements, les températures futures, ou les niveaux de vente. Les types de régression incluent :
-    
-    \begin{itemize}
-        \item Régression linéaire
-        \item Régression polynomiale
-        \item Régression par arbre de décision
-        \item Régression Ridge/Lasso
-        \item Classification
-    \end{itemize}    
-
-    \item Classification
-    
-    La classification concerne la prédiction d'une catégorie ou classe discrète pour une observation. Elle est utilisée dans des tâches telles que la détection de spams, la reconnaissance d'images, et le diagnostic médical. Les algorithmes de classification incluent :
-
-        \begin{itemize}
-            \item Réseaux de neurones
-            \item \ac{svm}
-            \item Forêts aléatoires
-            \item \ac{knn}
-            \item Classificateurs bayésiens naïfs
-        \end{itemize}
-
-    \item Clustering
-    
-    Le clustering (ou regroupement) a pour but de diviser les données en groupes, ou clusters, de sorte que les points de données dans le même groupe soient plus similaires les uns aux autres qu'aux points dans d'autres groupes. Il est utilisé pour l'analyse exploratoire des données, la segmentation de marché, et l'organisation de grandes bases de données. Les méthodes de clustering comprennent :
-
-       \begin{itemize}
-            \item K-means
-            \item Clustering hiérarchique
-            \item \ac{dbscan}
-            \item Clustering basé sur la densité
-       \end{itemize}
-
-    \item Détection d'anomalies
-    
-    La détection d'anomalies (ou détection d'outliers) identifie les observations qui dévient significativement du reste des données. Elle est cruciale dans des domaines tels que la détection de fraude, la surveillance de la santé des systèmes et la maintenance prédictive. Les techniques courantes incluent :
-
-       \begin{itemize}
-            \item Isolation Forest
-            \item One-Class \acs{svm}
-            \item Méthodes basées sur la proximité
-       \end{itemize}
-
-    \item Réduction de dimensionnalité
-    
-    La réduction de dimensionnalité consiste à diminuer le nombre de variables aléatoires sous-jacentes, ou dimensions, dans un ensemble de données. Cela peut aider à améliorer l'efficacité des algorithmes d'apprentissage et à visualiser les données. Les approches incluent :
-
-        \begin{itemize}
-            \item \ac{pca}
-            \item \ac{tsne}
-            \item Auto-encodeurs (dans le cadre de l'apprentissage profond)
-        \end{itemize}
-\end{enumerate}
+Ces différents types d'apprentissage sont adaptés à diverses tâches. Ces tâches peuvent être regroupées en plusieurs catégories principales, chacune répondant à des objectifs spécifiques et utilisant des types de modèles appropriés. Voici une énumération de certaines des tâches les plus communes, comme détaillé par Giuseppe Bonaccorso dans \cite{Bonaccorso_2018}.
 
 Chacune de ces tâches exploite des principes et des algorithmes d'apprentissage automatique pour interpréter les données et faire des prédictions ou des classifications. Le choix de la tâche et de l'algorithme dépend largement du problème spécifique à résoudre et de la nature des données disponibles \cite{ml_task, Flach_2012}.
 
@@ -175,16 +97,17 @@ Ce tableau n'est pas exhaustif mais donne un aperçu général des associations 
     \hline
     \textbf{Type d'apprentissage} & \textbf{Tâche}             & \textbf{Algorithmes}                       \\ \hline
     Supervisé                     & Régression                 & Régression linéaire, Forêts aléatoires     \\ \cline{2-3} 
-                                  & Classification             & \ac{svm}, \ac{knn}, Réseaux de neurones             \\ \hline
+                                  & Classification             & \acs{svm}, \acs{knn}, Réseaux de neurones             \\ \hline
     Non supervisé                 & Clustering                 & K-means, Clustering hiérarchique           \\ \cline{2-3} 
-                                  & Réduction de dimensionnalité & \ac{pca}, \ac{tsne}                               \\ \cline{2-3}
-                                  & Détection d'anomalies      & Isolation Forest, One-Class \ac{svm}            \\ \hline
-    Par renforcement              & Prise de décision         & Q-learning, \ac{dqn}            \\ \hline
+                                  & Réduction de dimensionnalité & \acs{pca}, \acs{tsne}                               \\ \cline{2-3}
+                                  & Détection d'anomalies      & Isolation Forest, One-Class \acs{svm}            \\ \hline
+    Par renforcement              & Prise de décision         & Q-learning, \acs{dqn}            \\ \hline
 \end{tabular}
 \caption{Association entre types d'apprentissage, tâches et algorithmes en \ac{ml}}
 \label{table:mapping-type-task-algorithms}
 \end{table}
 
+\newpage
 \subsection{Le processus de l'apprentissage automatique} \hspace{0pt}
 \label{ch:1:section:ml-process}
 
@@ -195,7 +118,7 @@ Ce tableau n'est pas exhaustif mais donne un aperçu général des associations 
     \label{fig:mlprocess}
 \end{figure}
 
-L'apprentissage est dit "automatique" en raison de la capacité des modèles à apprendre à partir de données sans intervention humaine explicite après leur programmation initiale. Comme nous pouvons le voir sur la figure~\ref{fig:mlprocess}, le processus de développement d'un modèle d'apprentissage automatique est présenté comme un flux de travail structuré en plusieurs étapes clés :
+L'apprentissage est dit "\textbf{automatique}" en raison de la capacité des modèles à apprendre à partir de données sans intervention humaine explicite après leur programmation initiale. Comme nous pouvons le voir sur la figure~\ref{fig:mlprocess}, le processus de développement d'un modèle d'apprentissage automatique est présenté comme un flux de travail structuré en plusieurs étapes clés :
 
 \begin{enumerate}
     \item Tout commence avec les données brutes, ces données peuvent provenir de différentes sources et sont souvent hétérogènes, non structurées et peuvent contenir des erreurs ou des valeurs manquantes.
@@ -225,7 +148,7 @@ L'apprentissage est dit "automatique" en raison de la capacité des modèles à 
     \label{fig:datagenerated}
 \end{figure}
 
-L'avènement d'Internet a entraîné une explosion de la quantité de données générées, connue sous le nom de "big data". Le big data désigne de vastes ensembles de données si complexes et volumineux qu'ils sont difficiles à traiter avec des outils de gestion de base de données traditionnels \cite{Ratner_2012}.
+L'avènement d'Internet a entraîné une explosion de la quantité de données générées, connue sous le nom de "\textbf{big data}". Le big data désigne de vastes ensembles de données si complexes et volumineux qu'ils sont difficiles à traiter avec des outils de gestion de base de données traditionnels \cite{Ratner_2012}.
 
 Ces données, provenant de diverses sources telles que les médias sociaux, les transactions en ligne, les capteurs et les dispositifs connectés, représentent une mine d'or pour l'entraînement des modèles de \ac{ml}, offrant une richesse d'informations pour améliorer la précision des prédictions et des décisions.
 
@@ -233,14 +156,7 @@ Cependant, l'apprentissage automatique traditionnel s'est avéré insuffisant po
 
 Cela a conduit à l'émergence de l'\acf{dl}, un sous-ensemble de l'apprentissage automatique qui utilise des réseaux de neurones artificiels profonds. Le \ac{dl} s'inspire de la structure et du fonctionnement du cerveau humain, permettant aux modèles de traiter des niveaux de complexité et de subtilité dans les données bien au-delà de la portée des approches traditionnelles de \ac{ml}. Grâce à sa capacité à apprendre des caractéristiques hiérarchiques dans les données, le deep learning s'est avéré particulièrement efficace pour des tâches complexes telles que la reconnaissance d'images, la compréhension du langage naturel et la génération de contenu créatif \cite{Foster_2019}.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=12cm]{gfx/fig-dl-ml-ai.png}
-    \caption{Un diagramme de Venn montrant comment l'apprentissage profond est lié à l'apprentissage par représentation, qui est à son tour lié à l'apprentissage automatique, qui est utilisé dans plusieurs approches de L'\ac{ia}, mais pas toutes \cite{Goodfellow-et-al-2016}}.
-    \label{fig:dl-ml-ai}
-\end{figure}
-
-L'apprentissage profond s'appuie sur une représentation mathématique spécifique du cerveau humain, connue sous le nom de réseaux de neurones. Ces réseaux forment le cœur des algorithmes d'apprentissage profond et sont responsables de leur capacité à apprendre des modèles complexes dans d'immenses ensembles de données. 
+Ces réseaux forment le cœur des algorithmes d'apprentissage profond et sont responsables de leur capacité à apprendre des représentations complexes dans d'immenses ensembles de données. 
 
 \subsubsection{Le perceptron}
 
@@ -264,7 +180,7 @@ Bien que le perceptron ait marqué un tournant dans le développement des algori
 
 \subsubsection{Les réseaux de neurones}
 
-Un réseau de neurones, dans son essence, est une collection de perceptrons (ou neurones artificiels) organisés en couches. Un réseau typique comprend une couche d'entrée, une ou plusieurs couches cachées, et une couche de sortie. Chaque neurone dans une couche est connecté à plusieurs neurones dans la couche suivante, permettant ainsi au réseau de traiter l'information de manière hiérarchique. Ce design permet aux réseaux de neurones d'apprendre des relations complexes et non linéaires dans les données \cite{Jaspreet_2022, Min69}.
+Un réseau de neurones, dans son essence, est une collection de perceptrons (ou neurones artificiels) organisés en couches. Un réseau typique comprend une couche d'entrée, une ou plusieurs couches cachées, et une couche de sortie. Chaque neurone dans une couche est connecté à plusieurs neurones dans la couche suivante, permettant ainsi au réseau de traiter l'information de manière hiérarchique. Cette conception permet aux réseaux de neurones d'apprendre des relations complexes et non linéaires dans les données \cite{Jaspreet_2022, Min69}.
 
 \begin{figure}[H]
     \centering
@@ -292,76 +208,6 @@ Prise de décision       & DQN, Policy Gradient, Actor-Critic   & Par renforceme
 \caption{Association entre tâches, architectures de modèles NN et type d'architectures}
 \label{tab:my-table}
 \end{table}
-
-\newpage
-\paragraph{L'optimisation} \hspace{0pt}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=8cm]{gfx/fig-gradient-descent.png}
-    \caption{\acf{gd} (voir Code~\ref{appendix:code:python:gd})}
-    \label{fig:gradient-descent}
-\end{figure}
-
-Les réseaux de neurones utilisent plusieurs algorithmes d'optimisation pour minimiser la fonction de perte durant l'entraînement. Ces algorithmes ajustent les poids du réseau de manière itérative pour réduire au minimum la différence entre les prédictions et les vraies valeurs. Voici une liste des algorithmes d'optimisation les plus utilisés, accompagnés de leurs formules de base \cite{ruder2016overview, Goodfellow-et-al-2016} :
-
-\begin{itemize}
-    \item \acf{gd}
-    \begin{equation}
-        \theta = \theta - \eta \cdot \nabla_\theta J( \theta)
-    \end{equation}
-    Mise à jour des paramètres en soustrayant le produit du taux d'apprentissage \( \eta \) et du gradient de la fonction de coût \( J(\theta) \) par rapport aux paramètres \( \theta \).
-
-    \item \acf{sgd}
-    \begin{equation}
-        \theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})
-    \end{equation}
-    Similaire à \ac{gd}, mais la mise à jour est faite pour chaque exemple d'entraînement. Cela rend \ac{sgd} plus rapide et capable de s'échapper des minima locaux.
-    
-    \item \acf{sgd} avec Momentum
-    \begin{align}
-    \begin{split}
-        v_t &= \gamma v_{t-1} + \eta \nabla_\theta J( \theta)\\
-        \theta &= \theta - v_t
-    \end{split}
-    \end{align}
-    Ajoute une fraction \( \gamma \) du vecteur de mise à jour précédent à la mise à jour courante pour accélérer la convergence.
-    
-    \item \acf{adagrad}
-    \begin{align}
-    \begin{split}
-        g_{t, i} &= \nabla_{\theta_t} J( \theta_{t,i} ) \\
-        \theta_{t+1, i} &= \theta_{t, i} - \eta \cdot g_{t, i} \\
-        \theta_{t+1, i} &= \theta_{t, i} - \frac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}
-    \end{split}
-    \end{align}
-    
-    Adapte le taux d'apprentissage à chaque paramètre en divisant par la racine carrée de la somme des carrés des gradients précédents. \( G_t \) est une matrice diagonale où chaque élément diagonal est la somme des carrés des gradients pour un paramètre spécifique, et \( \epsilon \) est un terme de lissage pour éviter la division par zéro.
-    
-    \item \acf{rmsprop}
-    \begin{align}
-    \begin{split}
-        E[g^2]_t &= 0.9 E[g^2]_{t-1} + 0.1 g^2_t \\
-        \theta_{t+1} &= \theta_{t} - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} g_{t}
-    \end{split}
-    \end{align}
-    
-    Modifie \ac{adagrad} pour améliorer ses performances avec des gradients très différents en utilisant une moyenne mobile exponentielle du carré des gradients.
-    
-    \item \acf{adam}
-    \begin{align}
-    \begin{split}
-        m_t &= \beta_1 m_{t-1} + (1 - \beta_1) g_t \\
-        v_t &= \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 \\
-        \hat{m}_t &= \frac{m_t}{1 - \beta^t_1} \\
-        \hat{v}_t &= \frac{v_t}{1 - \beta^t_2} \\
-        \theta_{t+1} &= \theta_{t} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
-    \end{split}
-    \end{align}
-    Calcule des moyennes mobiles exponentielles des gradients et des carrés des gradients. Les estimations sont corrigées pour obtenir des estimations non biaisées, ce qui améliore l'efficacité de l'algorithme dans les premiers temps de l'optimisation.
-\end{itemize}
-
-Dans le cadre de ce mémoire, nous ne nous concentrerons pas sur les aspects mathématiques sous-jacents des algorithmes d'optimisation ni sur les diverses architectures de réseaux de neurones. Comme souligné précédemment, notre intérêt se porte principalement sur le traitement du langage humain et son application dans le développement de chatbots.
 
 \subsection{Les \acfp{llm}}
 \label{ch:1:section:llm}
@@ -455,18 +301,33 @@ Gemini & Le modèle créé par Google avec 137B paramètres \cite{geminiteam2023
 
 L'architecture Transformer, introduite dans l'article intitulé "Attention is All You Need" par Vaswani et al. en 2017, représente une avancée significative dans le domaine du \ac{nlp} et du \ac{ml}. Cette architecture se distingue par son mécanisme d'attention, permettant aux modèles de pondérer différemment les parties d'une séquence d'entrée lors de la prédiction de la séquence de sortie. Nous aborderons ici les composants clés de l'architecture Transformer ainsi que les formules associées, en nous efforçant de détailler chaque élément avec précision.
 
+\newpage
 \subsubsection{Encodage et Décodage}
 
 \paragraph{Encodeur} \hspace{0pt}
 
-L'encodeur est constitué d'une série de 6 couches identiques. Chaque couche comporte deux sous-couches : la première est un mécanisme d'auto-attention multi-têtes, et la seconde, un réseau de neurones entièrement connecté et positionnel. Un dispositif de connexion résiduelle est utilisé autour de chacune des deux sous-couches, suivi d'une normalisation de couche. Autrement dit, la sortie de chaque sous-couche est le résultat de la normalisation de la somme de l'entrée et du résultat de la sous-couche elle-même. Pour permettre ces connexions résiduelles, toutes les sous-couches du modèle, y compris les couches d'embedding, génèrent des sorties d'une dimension de 512.
+l'encodeur est responsable de comprendre le texte d'entrée. Il commence par convertir le texte en une série de vecteurs, qui sont des représentations numériques des mots. Ces vecteurs traversent plusieurs couches identiques, chacune comprenant deux sous-couches principales : 
+\begin{itemize}
+    \item[-] \textbf{la self-attention} et le réseau de neurones feed-forward. La self-attention permet à chaque mot de prêter attention à tous les autres mots de la phrase, aidant ainsi à comprendre le contexte global.
+
+    \item[-] \textbf{Le réseau de neurones feed-forward} affine ensuite ces représentations. À la sortie, l'encodeur produit une série de vecteurs contextuels enrichis qui représentent la compréhension du texte d'entrée.
+\end{itemize}
 
 \paragraph{Décodeur} \hspace{0pt}
 
-Le décodeur est également formé de 6 couches identiques. En plus des deux sous-couches présentes dans chaque couche de l'encodeur, le décodeur ajoute une troisième sous-couche qui réalise une attention multi-têtes sur la sortie de l'ensemble de l'encodeur. Tout comme dans l'encodeur, des connexions résiduelles sont utilisées autour de chaque sous-couche, suivies d'une normalisation de couche. La sous-couche d'auto-attention du décodeur est également adaptée pour éviter que les positions ne tiennent compte des positions ultérieures. Cette précaution, combinée au décalage des embeddings de sortie d'une position, garantit que les prédictions pour une position donnée ne peuvent dépendre que des sorties connues aux positions précédentes.
+Le décodeur, quant à lui, est responsable de générer le texte de sortie basé sur la compréhension fournie par l'encodeur. Il prend deux types d'entrées : les vecteurs produits par l'encodeur et le texte généré jusqu'à présent. Comme l'encodeur, le décodeur se compose de plusieurs couches identiques, mais avec des sous-couches supplémentaires. La sous-couche de masked self-attention masque les mots futurs pour empêcher la prédiction de regarder les réponses futures. La sous-couche d'attention croisée permet au décodeur de prêter attention aux vecteurs de l'encodeur, liant ainsi les informations d'entrée et de sortie. 
+
+Enfin, le réseau de neurones feed-forward affine les représentations après l'attention croisée. Le décodeur génère le texte de sortie, un mot à la fois, en se basant sur les vecteurs contextuels et les mots générés précédemment.
 
 \subsubsection{L'attention}
-Une fonction d'attention fonctionne en associant une requête à des paires de clés et de valeurs pour produire un résultat, avec tous ces éléments sous forme de vecteurs. Le résultat est obtenu en faisant la somme des valeurs, pondérée par l'importance accordée à chaque valeur. Cette importance est déterminée par une fonction qui mesure à quel point la requête et chaque clé se correspondent.
+
+L'attention est un mécanisme central dans l'architecture Transformer, permettant au modèle de se concentrer sur différentes parties de la séquence d'entrée de manière flexible et efficace. Voici comment cela fonctionne :
+
+Le mécanisme d'attention, en particulier la self-attention, permet à chaque mot d'une séquence de texte de prêter attention à tous les autres mots de cette séquence. Cela signifie que pour chaque mot, le modèle peut déterminer quels autres mots sont les plus importants pour comprendre son contexte. Pour chaque paire de mots, le modèle calcule un score d'attention, qui indique l'importance relative de chaque mot par rapport aux autres.
+
+Ces scores d'attention sont utilisés pour pondérer les représentations des mots, permettant au modèle de créer une nouvelle représentation pour chaque mot, intégrant le contexte des mots pertinents. Cette capacité à capturer les relations contextuelles entre les mots est cruciale pour comprendre des structures complexes et des dépendances longues dans le texte.
+
+L'attention est calculée en utilisant trois matrices : les matrices de requêtes (queries), de clés (keys) et de valeurs (values). Chaque mot est projeté en une requête, une clé et une valeur. Les scores d'attention sont obtenus en calculant le produit scalaire entre les requêtes et les clés, suivi d'une normalisation par softmax pour obtenir des poids de probabilité. Ces poids sont ensuite utilisés pour pondérer les valeurs, produisant ainsi une représentation contextuelle pondérée pour chaque mot.
 
 \begin{figure}
     \begin{minipage}[t]{0.5\textwidth}
@@ -488,18 +349,24 @@ Une fonction d'attention fonctionne en associant une requête à des paires de c
 
 \paragraph{Scaled Dot-Product Attention} \hspace{0pt}
 
-Dans l'approche appelée attention par produit scalaire normalisé, l'entrée est composée de requêtes et de clés ayant une dimension \(d_k\), et de valeurs ayant une dimension \(d_v\). Le processus consiste à calculer le produit scalaire de chaque requête avec l'ensemble des clés, puis à diviser chaque résultat par \(\sqrt{d_k}\) avant d'appliquer une fonction softmax pour déterminer les poids attribués aux valeurs.
+Trois matrices sont utilisées : requêtes (queries), clés (keys) et valeurs (values). Ces matrices sont dérivées des représentations des mots. Les scores d'attention sont obtenus en calculant le produit scalaire entre chaque requête et toutes les clés. Matriciellement, cela se fait en multipliant la matrice des requêtes par la transposée de la matrice des clés. Les scores obtenus sont divisés par la racine carrée de la dimension des clés ($\sqrt{d_k}$).
 
-Habituellement, cette fonction d'attention est calculée pour plusieurs requêtes à la fois, regroupées dans une matrice Q. De même, les clés et les valeurs sont regroupées dans des matrices K et V. La matrice de sortie est alors obtenue par la formule suivante :
+Cette étape de mise à l'échelle (scaling) aide à stabiliser les gradients lors de l'entraînement. Les scores mis à l'échelle sont ensuite normalisés à l'aide d'une fonction softmax pour obtenir des poids de probabilité. Cela convertit les scores en poids relatifs qui s'additionnent à 1.
+
+Les poids de probabilité sont utilisés pour pondérer les valeurs correspondantes. La sortie de l'attention est alors une somme pondérée des valeurs, reflétant les parties importantes de la séquence d'entrée.
+
+La matrice de sortie est alors obtenue par la formule suivante :
 \begin{equation}
     \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 \end{equation}
 
 \paragraph{Multi-Head Attention} \hspace{0pt}
 
-Dans l'approche d'attention multi-têtes, il est courant de ne pas se restreindre à une unique fonction d'attention avec des clés, des valeurs et des requêtes de dimension \(d_{\text{model}}\). Il est avantageux de projeter linéairement les requêtes, les clés et les valeurs plusieurs fois (souvent noté \(h\) fois) avec différentes projections linéaires apprises, vers des dimensions \(d_k\), \(d_k\) et \(d_v\) respectivement. Pour chaque ensemble de projections, la fonction d'attention est appliquée en parallèle, produisant des sorties de dimension \(d_v\). Ces sorties sont ensuite concaténées et projetées à nouveau, aboutissant aux valeurs finales.
+L'attention multi-têtes améliore le mécanisme de scaled dot-product attention en permettant au modèle de se concentrer sur différentes parties de la séquence de manière simultanée
 
-L'utilisation de l'attention multi-têtes permet de traiter simultanément des informations provenant de différents sous-espaces de représentation et à différentes positions. Cette méthode surpasse l'approche d'une unique tête d'attention où la moyenne des informations peut limiter la capacité à exploiter ces divers sous-espaces.
+Les entrées (requêtes, clés et valeurs) sont projetées en plusieurs sous-espaces de dimension inférieure par des couches linéaires distinctes. Si nous avons h têtes d'attention, chaque projection crée des versions plus petites des requêtes, clés et valeurs. Pour chaque tête, la scaled dot-product attention est calculée indépendamment. Cela permet à chaque tête de se concentrer sur différentes parties de la séquence ou de capturer différentes relations entre les mots.
+
+Les sorties des h têtes d'attention sont concaténées pour former une seule matrice. Cette matrice représente une combinaison de différentes perspectives sur les relations de la séquence. La matrice concaténée passe par une dernière couche linéaire pour produire la sortie finale de la multi-head attention.
 
 La formule générale pour l'attention multi-têtes est définie comme suit :
 \begin{equation}
@@ -511,57 +378,40 @@ où chaque \(\text{head}_i\) correspond à :
     \text{head}_i = \text{Attention}(QW^Q_i, KW^K_i, VW^V_i)
 \end{equation}
 
-Les projections sont réalisées à l'aide de matrices de paramètres spécifiques pour chaque tête, \(W^Q_i \in \mathbb{R}^{d_{\text{model}} \times d_k}\), \(W^K_i \in \mathbb{R}^{d_{\text{model}} \times d_k}\), \(W^V_i \in \mathbb{R}^{d_{\text{model}} \times d_v}\) et \(W^O \in \mathbb{R}^{hd_v \times d_{\text{model}}}\).
-
-\paragraph{Utilisation de l'attention} \hspace{0pt}
-
-L'architecture Transformer utilise l'attention multi-têtes de trois manières distinctes, de premier abord, dans les couches d'attention "encodeur-décodeur", les requêtes proviennent de la couche précédente du décodeur, tandis que les clés et les valeurs de mémoire proviennent de la sortie de l'encodeur. Cela permet à chaque position dans le décodeur de tenir compte de toutes les positions dans la séquence d'entrée, reproduisant ainsi les mécanismes d'attention encodeur-décodeur typiques des modèles de séquence à séquence.
-
-Pour illustrer, prenons l'exemple d'une tâche de traduction d'une phrase juridique de l'Anglais vers le Français. Considérons la phrase "\textit{\textbf{The defendant was acquitted due to lack of evidence}}", à traduire en "\textit{\textbf{L'accusé a été acquitté faute de preuves}}". Lors de la traduction du terme "\textit{preuves}", l'attention encodeur-décodeur va accorder une importance particulière aux mots "\textit{lack}", "\textit{of}" et "\textit{evidence}" de la phrase en anglais, car ils sont essentiels pour rendre le concept d'"\textit{preuve}". En se focalisant sur ces éléments clés, l'attention oriente le modèle vers une traduction plus précise de cette portion du texte juridique
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=14cm]{gfx/figure-cross-attention-machanism.png}
-    \caption[]{L'attention permet de se concentrer sur les parties importantes du texte saisi.}
-    \label{fig:cross-attention-mechanism}
-\end{figure}
-
-En suite, l'encodeur comprend des couches d'auto-attention. Dans une couche d'auto-attention, les clés, les valeurs et les requêtes proviennent du même endroit, ici, la sortie de la couche précédente de l'encodeur. Chaque position dans l'encodeur peut ainsi tenir compte de toutes les positions dans la couche précédente de l'encodeur.
-
-Pour illustrer, prenons l'exemple de la phrase : \textbf{\textit{"Alice a été félicitée par ses collègues"}}. Imaginons que le modèle cherche à comprendre à qui se réfère le pronom "ses". Grâce à l'auto-attention, le modèle va pondérer différemment les mots de la phrase, en soulignant ceux qui sont significatifs pour "ses" dans ce contexte particulier. Ainsi, dans cet exemple, "Alice" et "collègues" seraient jugés plus importants. L'auto-attention permet au modèle de synthétiser ces mots pour former le concept pertinent, qui pourrait être interprété comme "les collègues d'Alice" dans cette situation.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=12cm]{gfx/figure-self-attention.png}
-    \caption[]{L'auto-attention permet l'émergence du concept de "collègues d'Alice". \cite{Caelen_Blete_2023}}
-    \label{fig:attention-vs-multihead}
-\end{figure}
-
-Enfin, De manière similaire, les couches d'auto-attention dans le décodeur permettent à chaque position du décodeur de prendre en compte toutes les positions dans le décodeur jusqu'à la position actuelle incluse. Il est nécessaire de bloquer le flux d'informations vers la gauche dans le décodeur pour préserver la propriété auto-régressive. Cela est réalisé au sein de l'attention par produit scalaire normalisé en masquant (en réglant à $-\infty$) toutes les valeurs dans l'entrée du softmax qui correspondent à des connexions interdites.
+Le principal avantage de la multi-head attention est sa capacité à capturer diverses caractéristiques des mots et de leurs relations contextuelles en parallèle. Cela permet au modèle d'extraire plus d'informations riches et variées par rapport à une seule tête d'attention..
 
 \subsubsection{Position-wise Feed-Forward Networks}
 
-En plus des sous-couches d'attention, chaque couche de l'encodeur et du décodeur intègre un réseau de neurones entièrement connecté, appliqué séparément et de manière identique à chaque position. Ce réseau est composé de deux transformations linéaires avec une activation ReLU entre les deux. La fonction du réseau de neurones peut être décrite par la formule suivante : 
+Sont des réseaux de neurones appliqués de manière indépendante à chaque position de la séquence de texte. Ils consistent en deux couches linéaires séparées par une fonction d'activation ReLU. Ces réseaux permettent des transformations non linéaires des représentations des mots, enrichissant ainsi les capacités de capture des relations complexes dans le texte par le modèle Transformer.
+
+La fonction du réseau de neurones peut être décrite par la formule suivante : 
 \begin{equation}
     \text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2
 \end{equation}
 
 où \( \max(0, z) \) représente la fonction d'activation ReLU appliquée élément par élément au vecteur \( z \).
 
-Même si les transformations linéaires sont identiques pour les différentes positions, elles utilisent des paramètres distincts d'une couche à l'autre. Cela peut également être vu comme l'équivalent de deux convolutions de taille de noyau 1. La dimension des entrées et des sorties est \( d_{\text{model}} = 512 \), tandis que la dimension de la couche intermédiaire est \( d_{\text{ff}} = 2048 \).
-
 \subsubsection{Embeddings et Softmax}
-Comme dans d'autres modèles de transduction de séquence, des embeddings appris sont utilisés pour convertir les tokens d'entrée et de sortie en vecteurs de dimension \(d_{\text{model}}\). Une transformation linéaire apprise suivie d'une fonction softmax est également employée pour convertir la sortie du décodeur en probabilités du prochain token prédit. Dans ce modèle, la même matrice de poids est partagée entre les deux couches d'embedding et la transformation linéaire précédant la softmax, à l'instar d'autres travaux référencés. Dans les couches d'embedding, ces poids sont multipliés par \(\sqrt{d_{\text{model}}}\) pour ajuster l'échelle.
+\label{ch:1:section:embeddings}
+
+\paragraph{Embeddings} \hspace{0pt}
+
+Les embeddings sont des représentations vectorielles des mots dans un espace continu de dimension inférieure. Ils sont utilisés pour convertir des mots en vecteurs numériques, ce qui permet au modèle Transformer de traiter des données textuelles de manière plus efficace. Chaque mot du vocabulaire est représenté par un vecteur dense de dimension fixe. Par exemple, un mot pourrait être représenté par un vecteur de 512 dimensions.
+
+Les embeddings capturent les similarités sémantiques entre les mots. Par exemple, les mots "roi" et "reine" auront des vecteurs similaires. Dans l'architecture Transformer, les embeddings sont utilisés comme les premières représentations des mots. Ils sont enrichis par les mécanismes d'attention et les réseaux feed-forward dans les couches suivantes.
+
+\paragraph{Softmax} \hspace{0pt}
+
+La fonction Softmax est utilisée à la fin du modèle Transformer, en particulier dans la tâche de génération de texte, pour convertir les scores bruts (logits) en probabilités. Softmax prend un vecteur de scores réels (logits) et les transforme en un vecteur de probabilités. Chaque score est exponentié, et les résultats sont normalisés pour que la somme des probabilités soit égale à 1.
+
+Après que le décodeur ait produit les logits pour chaque mot potentiel, la fonction Softmax est appliquée pour obtenir une distribution de probabilité sur tous les mots possibles du vocabulaire. Le mot avec la plus haute probabilité est choisi comme le mot suivant dans la séquence générée.
 
 \subsubsection{Positional Encoding}
-Dans les modèles de traitement de séquences qui ne reposent ni sur des mécanismes de récurrence ni sur des convolutions, il est crucial d'intégrer une forme de connaissance sur l'ordre des éléments de la séquence. Pour cela, des "encodages positionnels" sont ajoutés aux vecteurs d'embeddings en début de l'encodeur et du décodeur. Ces encodages ont la même dimension que les embeddings, ce qui permet de les additionner ensemble. Il existe plusieurs méthodes pour créer ces encodages, qu'ils soient définis à l'avance ou appris durant l'entraînement.
 
-Une méthode courante consiste à utiliser des fonctions sinus et cosinus avec des fréquences variées pour générer ces encodages positionnels. La formule pour un encodage positionnel est la suivante : pour une position \(pos\) dans la séquence et pour chaque dimension \(i\) de l'encodage, la valeur est donnée par une fonction sinus pour les dimensions paires et cosinus pour les dimensions impaires, avec une fréquence qui décroît exponentiellement le long des dimensions.
-
-Cette approche a été choisie car elle facilite l'apprentissage de la relation entre des positions relatives dans la séquence. En effet, un décalage fixe entre deux positions peut être représenté par une transformation linéaire des encodages, ce qui simplifie le traitement par le modèle.
-
-Bien que des tests aient été effectués avec des encodages positionnels appris, les résultats obtenus étaient très similaires à ceux obtenus avec les encodages sinusoidaux. La préférence pour les encodages sinusoidaux est motivée par leur potentiel à mieux généraliser pour des séquences plus longues que celles rencontrées lors de l'entraînement, offrant ainsi une plus grande flexibilité au modèle.
+Les Positional Encodings permettent aux modèles Transformer de capturer l'information de position dans les séquences de texte. Calculés à l'aide de fonctions sinusoïdales et cosinus, ils sont ajoutés aux embeddings des mots pour fournir une notion d'ordre. Cette technique permet aux Transformeurs de traiter des séquences de manière non séquentielle tout en conservant l'information de position essentielle pour comprendre le contexte et le sens des phrases.
 
 % %---------------------------------------------------------------------------------------%
+\newpage
 \subsection{Résumé de l'évolution des chatbots}
 \label{ch:1:section:history}
 
@@ -629,7 +479,7 @@ Cet ajustement présente le même contenu mais dans un format légèrement diff�
 
 \paragraph{Élaboration d'une Loi} \hspace{0pt}
 
-L'élaboration d'une loi en RDC suit un processus bien défini, impliquant différentes étapes et acteurs du système juridique et politique. Ce processus commence généralement par l'initiative législative, qui peut être prise par les membres du Parlement, le gouvernement, ou par voie de pétition populaire dans certains cas \footnote{\href{https://www.memoireonline.com/12/12/6552/Problematique-du-droit-de-la-petition-dans-la-constitution-du-18-fevrier-2006-de-la-RDC.html}{Problématique du droit de la pétition dans la constitution du 18 février 2006 de la RDC}}. Une fois proposée, une loi doit passer par diverses étapes de discussion, d'amendement, et d'approbation dans les deux chambres du Parlement congolais.
+L'élaboration d'une loi en RDC suit un processus bien défini, impliquant différentes étapes et acteurs du système juridique et politique. Ce processus commence généralement par l'initiative législative, qui peut être prise par les membres du Parlement, le gouvernement, ou par voie de pétition populaire dans certains cas \footnote{\href{https://www.memoireonline.com/12/12/6552/Problematique-du-droit-de-la-petition-dans-la-constitution-du-18-fevrier-2006-de-la-RDC.html}{https://www.memoireonline.com/12/12/6552/Problematique-du-droit-de-la-petition-dans-la-constitution-du-18-fevrier-2006-de-la-RDC.html}}. Une fois proposée, une loi doit passer par diverses étapes de discussion, d'amendement, et d'approbation dans les deux chambres du Parlement congolais.
 
 Après l'approbation par le Parlement, la loi est soumise au Président de la République pour promulgation et publication au Journal Officiel, devenant ainsi exécutoire. Ce processus d'élaboration législative est conçu pour assurer la participation démocratique, le débat ouvert, et la réflexion approfondie sur les propositions législatives avant qu'elles ne deviennent des lois.
 
@@ -712,8 +562,6 @@ Chaque jour, de nouvelles publications émergent, poussant les frontières de ce
         \hline
         \href{https://www.ai.law/}{AI.law} & Solutions d'automatisation juridique basées sur L'\ac{ia} \\
         \hline
-        \href{https://juro.com/ai}{Juro} & Plateforme d'automatisation des contrats \\
-        \hline
         \href{https://www.lexisnexis.com/en-us/products/lexis-plus-ai.page}{LexisNexis} & Solutions d'\ac{ia} pour la recherche juridique et l'analyse des litiges \\
         \hline
         \href{https://www.paxton.ai/}{Paxton} & Plateforme d'automatisation des contrats pour accélérer le processus de rédaction et d'examen \\
@@ -735,7 +583,7 @@ Chaque jour, de nouvelles publications émergent, poussant les frontières de ce
 
 
 % %--------------------------------------------------------------------------------------------------------%
-\section{Conclusion}
+\section{Résume du chapitre}
 
 Ce chapitre a fourni une vue d'ensemble approfondie des modèles \ac{llm}, en mettant en lumière les avancées récentes, les applications marquantes et les défis associés, avec un accent particulier sur les applications juridiques et les chatbots. Grâce à cette exploration, nous avons établi un cadre théorique et contextuel essentiel pour comprendre l'innovation et la pertinence de ce mémoire dans le domaine de l'intelligence artificielle appliquée au droit. 
 
