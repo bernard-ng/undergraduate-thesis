@@ -121,6 +121,15 @@ questions.to_csv('./data/answers-gemini-pro.csv', index=False)
 
 Chaque ensemble de réponses correspondant à un modèle sera également associé à une lettre, afin de préserver l'anonymat tout au long du processus d'évaluation. Cette méthode nous permet de suivre précisément quelle réponse appartient à quel modèle sans révéler cette information aux évaluateurs, assurant ainsi que les évaluations restent centrées uniquement sur la qualité des réponses par rapport aux critères établis, sans influence extérieure. 
 
+\subsection{Évaluation qualitative}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-eval.png}
+    \caption{Extrait des évaluations reçues via Google Form}
+    \label{fig:eval-result}
+\end{figure}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=15cm]{gfx/fig-model-result.png}
@@ -128,10 +137,98 @@ Chaque ensemble de réponses correspondant à un modèle sera également associ�
     \label{fig:model-result}
 \end{figure}
 
+\newpage
+\subsection{Évaluation quantitative}
+Données de l'évaluation obtenues avec l'outil \href{https://artificialanalysis.ai/models/gemini-pro/prompt-options/single/medium}{artificialanalysis.ai}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-latency-eval.png}
+    \caption{Délai de réception du premier token, en secondes, après l'envoi de la demande d'\ac{api}.}
+    \label{fig:model-latency-eval}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-response-time-eval.png}
+    \caption{Temps nécessaire pour recevoir une réponse de 100 tokens. Estimation basée sur la latence (temps de réception du premier morceau) et la vitesse de sortie (nombre de tokens par seconde).}
+    \label{fig:model-response-time-eval}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-price-speed-eval.png}
+    \caption{Prix par token, représenté en USD par million de jetons. Le prix est un mélange des prix des tokens d'entrée et de sortie (ratio 3\:1).}
+    \label{fig:model-price-speed-eval}
+\end{figure}
+
+L'évaluation quantitative révèle que les modèles d'entreprise, avec leurs ressources dédiées, garantissent une haute disponibilité. Cependant, au-delà des capacités intrinsèques de chaque modèle, l'infrastructure sous-jacente joue un rôle crucial dans les performances globales. 
+
+Une infrastructure optimisée permet non seulement de maximiser l'efficacité des modèles, mais aussi d'assurer une réactivité et une fiabilité supérieures. La performance n'est donc pas uniquement liée à la sophistication du modèle, mais aussi à la robustesse et à l'efficacité de l'environnement dans lequel il opère. L'optimisation des serveurs, la gestion efficace des ressources et la minimisation des latences réseau sont autant de facteurs déterminants pour atteindre des performances de pointe.
 
 \newpage
 \newpage
 \section{Évaluation de notre modèle}
 
+Avant de procéder à une évaluation humaine, il est crucial de souligner la capacité de notre modèle à citer les sources utilisées pour générer ses réponses. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/juro-source.png}
+    \caption{Juro : Réponse avec citation}
+    \label{fig:juro-source-citing}
+\end{figure}
+
+En citant les sources, notre modèle permet aux utilisateurs de vérifier l'origine des informations fournies, augmentant ainsi la confiance dans la validité et l'authenticité des réponses. Aussi la capacité à référencer les sources permet à notre modèle de mieux contextualiser les informations. Les utilisateurs peuvent comprendre non seulement le contenu de la réponse, mais aussi le contexte dans lequel cette information a été obtenue, enrichissant ainsi leur compréhension globale.
+
+En fournissant des références, notre modèle aide les utilisateurs à approfondir leur recherche sur des sujets spécifiques. Ils peuvent consulter les sources originales pour obtenir des informations supplémentaires ou une perspective plus détaillée.
+
+\subsection{Évaluation qualitative}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/final-evaluation-juro.png}
+    \caption{Résultats après évaluation de Juro par rapport aux modèles existants, en pourcentage.}
+    \label{fig:final-evaluation-jur}
+\end{figure}
+
+Notre modèle Juro a également été évalué par des juristes, en utilisant le même procédé et la même méthodologie que pour les autres modèles. Cette évaluation a permis de mesurer la performance de Juro dans un contexte spécifique et pertinent, celui du droit congolais.
+
+Les résultats finaux montrent que Juro surpasse significativement les autres modèles testés. Avec un score de 72\%, Juro se distingue par sa capacité à comprendre et à répondre aux questions juridiques congolaises de manière plus précise et plus pertinente. En comparaison, les autres modèles tels que GPT-3.5 Turbo (65.3\%), Gemini Pro (59.2\%), Llama2 (43.1\%), Mistral (38.0\%), et Vicuna (36.4\%) ont affiché des performances inférieures, soulignant ainsi l'avantage compétitif de Juro dans ce domaine.
+
+\newpage
+\subsection{Évaluation quantitative}
+
+Pour évaluer quantitativement les performances de notre modèle, nous l'avons déployé sur une infrastructure cloud AWS (voir Section~\ref{ch:2:section:deploy}). Plus précisément, notre modèle a été hébergé sur une machine virtuelle avec les caractéristiques suivantes \textbf{2 GB RAM, 2 vCPUs, 60 GB SSD}. Cette configuration de base permet de mesurer la performance brute de notre modèle dans un environnement réaliste et accessible.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gfx/fig-latency-juro.png}
+    \caption{Temps moyen nécessaire pour recevoir une réponse.}
+    \label{fig:latency-juro}
+\end{figure}
+
+Pour notre modèle, nous nous appuyons sur les API de Mistral et OpenAI, ainsi que sur Ollama pour les modèles open source, notamment Mistral-7b et Llama-7b. L'inférence de ces modèles open source se fait sur notre propre serveur, qui gère également la récupération des documents nécessaires. Étant donné les spécifications techniques de notre serveur, le temps de réponse est naturellement plus lent, que ce soit pour les questions simples de droit, comme la recherche de lois, ou pour les questions doctrinales qui nécessitent un raisonnement approfondi. Cette lenteur inhérente à notre infrastructure impacte la rapidité de traitement et peut représenter un défi lors de l'interrogation de notre modèle pour des analyses juridiques complexes.
+
+\newpage
 \section{Résultats et perspectives}
+
+Les évaluations qualitatives et quantitatives menées sur notre modèle montrent des résultats prometteurs mais également des pistes d'amélioration. Les principaux résultats obtenus sont :
+
+\begin{enumerate}
+    \item Les réponses générées par notre modèle se sont révélées globalement pertinentes et précises dans le contexte juridique. Cependant, certaines réponses nécessitent une compréhension plus approfondie des nuances juridiques et contextuelles.
+    \item Les évaluations qualitatives via Google Form ont montré que les utilisateurs ont trouvé les réponses utiles mais ont parfois relevé des incohérences mineures.
+    \item Le délai de réception du premier token après l'envoi de la demande d'API a été mesuré en secondes, révélant une latence plus élevée par rapport aux modèles d'entreprise. Cette différence est en grande partie due à notre infrastructure serveur moins optimisée.
+    \item Le temps nécessaire pour recevoir une réponse de 100 tokens a également été mesuré, avec des résultats indiquant que la vitesse de sortie (nombre de tokens par seconde) pourrait être améliorée pour une meilleure réactivité.
+\end{enumerate}
+
+Les résultats obtenus ouvrent plusieurs voies d'amélioration et de développement futur :
+
+\begin{enumerate}
+    \item L'optimisation de l'infrastructure serveur pourrait réduire la latence et améliorer la réactivité globale du modèle. L'intégration de serveurs plus puissants et de technologies de mise à l'échelle automatique pourrait être envisagée.
+    \item L'intégration de données spécifiques au domaine juridique et l'enrichissement continu du dataset utilisé pourraient améliorer la précision et la pertinence des réponses. Il est crucial de maintenir un dataset à jour et diversifié pour couvrir une large gamme de cas juridiques.
+    \item La mise en place de fonctionnalités avancées telles que la compréhension contextuelle améliorée, la gestion des biais dans les données et la capacité à fournir des explications détaillées des réponses pourrait renforcer la confiance des utilisateurs et améliorer l'utilité du modèle.
+    \item Encourager les collaborations entre experts en droit, ingénieurs en intelligence artificielle et autres parties prenantes est essentiel pour développer des solutions véritablement innovantes et adaptées aux besoins réels du secteur juridique. Les ateliers, les conférences et les projets communs pourraient favoriser l'échange de connaissances et de bonnes pratiques.
+\end{enumerate}
+
+En définitive, bien que notre modèle ait montré des résultats prometteurs, il reste encore beaucoup de travail à accomplir pour améliorer ses performances et répondre pleinement aux besoins du secteur juridique. Les perspectives d'avenir sont nombreuses et offrent de nombreuses opportunités pour exploiter le potentiel des technologies d'intelligence artificielle dans le domaine du droit.

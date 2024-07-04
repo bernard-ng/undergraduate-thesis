@@ -10,22 +10,18 @@
 \let\cleardoublepage\relax
 
 \chapter*{Résumé}
-Dans un milieu où l'accès à l'information juridique est fréquemment entravé et où la complexité du vocabulaire légal constitue un obstacle majeur à la compréhension du système juridique de la République Démocratique du Congo, ce projet ambitionne la création et le déploiement d'un chatbot innovant, basé sur un \ac{llm}. L'objectif de cette initiative est de faciliter l'accès aux connaissances juridiques. Employant des techniques d'intelligence artificielle, ce chatbot entend réinterpréter et simplifier le langage juridique, le rendant intelligible pour tous.
+Dans un environnement où l'accès à l'information juridique est souvent entravé, et où la complexité du vocabulaire juridique est un obstacle majeur à la compréhension du système juridique de la République démocratique du Congo, ce projet vise à créer et à déployer un chatbot innovant, basé sur un Large Language Model (LLM). L'objectif de cette initiative est de faciliter l'accès à la connaissance juridique. En utilisant des techniques d'intelligence artificielle, ce chatbot vise à réinterpréter et à simplifier le langage juridique, le rendant ainsi intelligible pour tous. Ce travail se concentre sur l'affinement des réponses générées par les LLM en utilisant une architecture de type Retrieval-Augmented Generation (RAG) et une application web (Juro) servant d'interface utilisateur.
 
-Ce travail se concentre sur l'ajustement des réponses générées des \acfp{llm} en utilisant une architecture \ac{rag} et une application web (Juro) servant d'interface aux utilisateurs.
+Notre contribution majeure comprend la création d'une architecture de scraper web pour la collecte systématique de documents juridiques, formant ainsi le premier ensemble de données structuré de documents juridiques en République Démocratique du Congo. Nous avons également développé une architecture RAG flexible permettant l'interchangeabilité des modèles d'intégration et de langage, offrant ainsi la possibilité de tester et d'intégrer différents modèles afin d'optimiser les performances du chatbot. De plus, nous avons mis en place un mécanisme de citation des sources dans les réponses générées, garantissant la fiabilité et la traçabilité de l'information. Enfin, la conception de l'architecture est adaptable à d'autres domaines que le droit, ce qui démontre sa polyvalence et son potentiel d'application dans divers contextes nécessitant la vulgarisation et l'accessibilité d'informations complexes.
 
-L'évaluation de notre approche sera réalisée via des retours d'experts humains, notamment des juristes, afin de mesurer l'efficacité du chatbot dans la simplification des concepts juridiques.
+Les résultats obtenus montrent que les réponses générées par notre modèle sont globalement pertinentes et précises dans le contexte juridique congolais par rapport aux modèles d'entreprise, bien que certaines réponses nécessitent une compréhension plus approfondie des nuances juridiques et contextuelles. Les évaluations qualitatives via Google Form ont indiqué que les utilisateurs ont trouvé les réponses utiles, malgré quelques incohérences mineures. Le temps nécessaire pour recevoir le premier jeton après l'envoi de la requête API a révélé une latence plus élevée que les modèles d'entreprise, principalement en raison de notre infrastructure de serveur moins optimisée.
 
 \vspace{1cm}
-\textbf{Mots clés~:} Chatbot, Large Language Model (LLM), Système Juridique Congolais, Vulgarisation, Accessibilité à l'Information, Intelligence Artificielle, Fine-tuning, Retrieval-augmented Generation
-
+\textbf{Mots clés~:} Chatbot, Large Language Model (LLM), Système Juridique Congolais, Vulgarisation, Accessibilité à l'Information, Intelligence Artificielle, Retrieval-augmented Generation
 \endgroup			
 
 \vfill
-
 \pagebreak
-
-
 
 \pdfbookmark[2]{Abstract}{Abstract} % Bookmark name visible in a PDF viewer
 \addcontentsline{toc}{chapter}{Abstract}
@@ -35,16 +31,14 @@ L'évaluation de notre approche sera réalisée via des retours d'experts humain
 \let\cleardoublepage\relax
 
 \chapter*{Abstract}
-In an environment where access to legal information is frequently hampered, and where the complexity of legal vocabulary is a major obstacle to understanding the legal system in the Democratic Republic of Congo, this project aims to create and deploy an innovative chatbot, based on a \ac{llm}. The aim of this initiative is to facilitate access to legal knowledge, by making legal terms more accessible to the Congolese population. Using artificial intelligence techniques, this chatbot aims to reinterpret and simplify legal language, making it intelligible to all.
+In an environment where access to legal information is frequently hampered, and where the complexity of legal vocabulary is a major obstacle to understanding the legal system of the Democratic Republic of Congo, this project aims to create and deploy an innovative chatbot, based on a Large Language Model (LLM). The aim of this initiative is to facilitate access to legal knowledge. Using artificial intelligence techniques, this chatbot aims to reinterpret and simplify legal language, making it intelligible to all. This work focuses on fine-tuning the responses generated by LLMs using a Retrieval-Augmented Generation (RAG) architecture and a web application (Juro) serving as the user interface.
 
-This work focuses on the tuning of LLMs to facilitate understanding of the Congolese legal framework, exploiting advanced technologies such as fine-tuning and retrieval-augmented generation \cite{lewis2021retrievalaugmented}. 
+Our major contribution includes the creation of a web scraper architecture for the systematic collection of legal documents, thus forming the first structured dataset of legal documents in the Democratic Republic of Congo. We also developed a flexible RAG architecture enabling interchangeability of embedding and language models, thus offering the possibility of testing and integrating various models to optimise chatbot performance. In addition, we have implemented a mechanism for quoting sources in the responses generated, guaranteeing the reliability and traceability of the information. Finally, the architecture design is adaptable to other fields outside law, demonstrating its versatility and potential for application in various contexts requiring the popularisation and accessibility of complex information.
 
-The evaluation of our approach will be carried out via feedback from human experts, notably lawyers, in order to measure the chatbot's effectiveness in simplifying legal concepts. This evaluation will involve verifying its ability to break down linguistic and cognitive barriers, thus making legal knowledge accessible to all Congolese citizens, in line with the country's principles of justice and equality.
+The results obtained show that the answers generated by our model are globally relevant and accurate in the Congolese legal context than enterprise models, although some answers require a deeper understanding of legal and contextual nuances. Qualitative evaluations via Google Form indicated that users found the answers useful, despite some minor inconsistencies. The time taken to receive the first token after sending the API request revealed a higher latency compared to enterprise models, mainly due to our less optimised server infrastructure.
 
 \vspace{1cm}
-\textbf{Key words~:} Chatbot, Large Language Model (LLM), Congolese Legal System, Popularization, Information Accessibility, Artificial Intelligence, Fine-tunig, Retrieval-augmented generation
-
-
+\textbf{Key words~:} Chatbot, Large Language Model (LLM), Congolese Legal System, Popularization, Information Accessibility, Artificial Intelligence, Retrieval-augmented generation
 \endgroup			
 
 \vfill
